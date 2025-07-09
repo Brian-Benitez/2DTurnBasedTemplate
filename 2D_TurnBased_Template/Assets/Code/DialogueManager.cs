@@ -16,6 +16,8 @@ public class DialogueManager : MonoBehaviour
 
     public float typingSpeed = 0.2f;
 
+    public int SentencesCount = 0;
+
     //public Animator animator;
 
     private void Awake()
@@ -28,13 +30,13 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        isDialogueActive = true;// check for thhis then pres E or someting
+        isDialogueActive = true;
 
         //animator.Play("show");
 
         lines.Clear();
 
-        foreach (DialogueLine dialogueLine in dialogue.dialogueLines)
+        foreach (DialogueLine dialogueLine in dialogue.DialogueLines)
         {
             lines.Enqueue(dialogueLine);
         }
@@ -42,7 +44,7 @@ public class DialogueManager : MonoBehaviour
         DisplayNextDialogueLine();
     }
 
-    public void DisplayNextDialogueLine()//This needs to be triggered by a key or someting
+    public void DisplayNextDialogueLine()
     {
         if (lines.Count == 0)
         {
@@ -65,6 +67,7 @@ public class DialogueManager : MonoBehaviour
             dialogueArea.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
+        SentencesCount++;
     }
 
     void EndDialogue()
