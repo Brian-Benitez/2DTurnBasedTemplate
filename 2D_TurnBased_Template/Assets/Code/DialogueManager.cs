@@ -4,10 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueManager : MonoBehaviour//I have to take this off. Cannot be a singlton with what im doing
 {
-    public static DialogueManager Instance;
-
     public TextMeshProUGUI dialogueArea;
 
     private Queue<DialogueLine> lines;
@@ -22,9 +20,6 @@ public class DialogueManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-
         lines = new Queue<DialogueLine>();
     }
 

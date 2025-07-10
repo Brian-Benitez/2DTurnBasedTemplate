@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 using UnityEngine.Windows;
 
@@ -17,6 +18,7 @@ public class Dialogue
 
 public class DialogueTrigger : MonoBehaviour
 {
+    [Header("NOTE: Make sure you add the Dialouge Manager to this object!")]
     [Header("Booleans")]
     public bool RestartDialouge = true;
 
@@ -26,24 +28,31 @@ public class DialogueTrigger : MonoBehaviour
     [Header("Dialouges lines")]
     public Dialogue Dialogue;
 
+    private DialogueManager _dialogueManagerRef;
+
+    private void Start()
+    {
+        _dialogueManagerRef = GetComponent<DialogueManager>();
+    }
+
     public void TriggerDialogue()
     {
-        DialogueManager.Instance.StartDialogue(Dialogue);
+        _dialogueManagerRef.StartDialogue(Dialogue);
     }
 
     private void Update()
     {
         if(!RestartDialouge && UnityEngine.Input.GetKeyUp(InteractKeyCode))
             return;
-        if(DialogueManager.Instance.isDialogueActive && UnityEngine.Input.GetKeyUp(InteractKeyCode))
+        if(_dialogueManagerRef.isDialogueActive && UnityEngine.Input.GetKeyUp(InteractKeyCode))
         {
             RestartDialouge = false;
             Debug.Log("start dialouge");
             TriggerDialogue();
         }
-        if(DialogueManager.Instance.isDialogueActive && UnityEngine.Input.GetKeyUp(KeyCode.Space) || UnityEngine.Input.GetMouseButtonUp(0))
+        if(_dialogueManagerRef.isDialogueActive && UnityEngine.Input.GetKeyUp(KeyCode.Space) || UnityEngine.Input.GetMouseButtonUp(0))
         {
-            DialogueManager.Instance.DisplayNextDialogueLine();
+            _dialogueManagerRef.DisplayNextDialogueLine();
             CheckList();
         }
     }
@@ -51,12 +60,12 @@ public class DialogueTrigger : MonoBehaviour
 
     void CheckList()
     {
-        if (Dialogue.DialogueLines.Count == DialogueManager.Instance.SentencesCount && DialogueManager.Instance.isDialogueActive)
+        if (Dialogue.DialogueLines.Count == _dialogueManagerRef.SentencesCount && _dialogueManagerRef.isDialogueActive)
         {
             RestartDialouge = true;
-            DialogueManager.Instance.SentencesCount = 0;
+            _dialogueManagerRef.SentencesCount = 0;
         }
-        else if(DialogueManager.Instance.SentencesCount < Dialogue.DialogueLines.Count && DialogueManager.Instance.isDialogueActive)
+        else if(_dialogueManagerRef.SentencesCount < Dialogue.DialogueLines.Count && _dialogueManagerRef.isDialogueActive)
             RestartDialouge = false;
     }
 
@@ -64,7 +73,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            DialogueManager.Instance.isDialogueActive = true;
+            _dialogueManagerRef.isDialogueActive = true;
         }
     }
 
@@ -72,7 +81,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            DialogueManager.Instance.isDialogueActive = false;
+            _dialogueManagerRef.isDialogueActive = false;
         }
     }
 }
