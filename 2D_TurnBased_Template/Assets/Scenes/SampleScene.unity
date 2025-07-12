@@ -1470,6 +1470,7 @@ GameObject:
   - component: {fileID: 996498985}
   - component: {fileID: 996498983}
   - component: {fileID: 996498984}
+  - component: {fileID: 996498986}
   m_Layer: 0
   m_Name: EmenyPrefab
   m_TagString: Untagged
@@ -1568,7 +1569,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.29063714, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1659,6 +1660,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &996498986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996498976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cfdefc5603991a468b81e6e2ce1c742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPCsStats: {fileID: 11400000, guid: a0960d1f491aeff44bc89d1d4f9a1d70, type: 2}
 --- !u!1 &1066548214
 GameObject:
   m_ObjectHideFlags: 0
@@ -2285,6 +2299,7 @@ GameObject:
   - component: {fileID: 1318433121}
   - component: {fileID: 1318433120}
   - component: {fileID: 1318433119}
+  - component: {fileID: 1318433125}
   m_Layer: 0
   m_Name: EmenyPrefab (1)
   m_TagString: Untagged
@@ -2446,7 +2461,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.23307127, g: 0.990566, b: 0.023362402, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2472,6 +2487,19 @@ Transform:
   - {fileID: 1139928458}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1318433125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318433118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cfdefc5603991a468b81e6e2ce1c742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NPCsStats: {fileID: 11400000, guid: b3c2949e41347c64b95445aff854dbfc, type: 2}
 --- !u!1 &1744839025
 GameObject:
   m_ObjectHideFlags: 0
