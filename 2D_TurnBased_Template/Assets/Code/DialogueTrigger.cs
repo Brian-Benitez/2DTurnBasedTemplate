@@ -39,7 +39,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         _dialogueManagerRef.StartDialogue(Dialogue);
     }
-
+    //BUG!: If you skip dialouge, it cannot restart properly
     private void Update()
     {
         if(!RestartDialouge && UnityEngine.Input.GetKeyUp(InteractKeyCode))
@@ -50,7 +50,11 @@ public class DialogueTrigger : MonoBehaviour
             Debug.Log("start dialouge");
             TriggerDialogue();
         }
-        if(_dialogueManagerRef.isDialogueActive && UnityEngine.Input.GetKeyUp(KeyCode.Space) || UnityEngine.Input.GetMouseButtonUp(0))
+        if(_dialogueManagerRef.isDialogueActive && _dialogueManagerRef.IsDialogueInProgress && UnityEngine.Input.GetKeyUp(KeyCode.Space) || UnityEngine.Input.GetMouseButtonUp(0))
+        {
+            _dialogueManagerRef.TypingSpeed = 0.01f;
+        }
+        if(!_dialogueManagerRef.IsDialogueInProgress &&_dialogueManagerRef.isDialogueActive && UnityEngine.Input.GetKeyUp(KeyCode.Space) || UnityEngine.Input.GetMouseButtonUp(0))
         {
             _dialogueManagerRef.DisplayNextDialogueLine();
             CheckList();

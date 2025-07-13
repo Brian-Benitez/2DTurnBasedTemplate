@@ -4,15 +4,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueManager : MonoBehaviour//I have to take this off. Cannot be a singlton with what im doing
+public class DialogueManager : MonoBehaviour
 {
     public TextMeshProUGUI dialogueArea;
 
     private Queue<DialogueLine> lines;
 
     public bool isDialogueActive = false;
+    public bool IsDialogueInProgress = false;
 
-    public float typingSpeed = 0.2f;
+    public float TypingSpeed = 0.1f;
+    private float _normalTypingSpeed = 0.1f;
 
     public int SentencesCount = 0;
 
@@ -56,13 +58,17 @@ public class DialogueManager : MonoBehaviour//I have to take this off. Cannot be
 
     IEnumerator TypeSentence(DialogueLine dialogueLine)
     {
+        SentencesCount++;
         dialogueArea.text = "";
         foreach (char letter in dialogueLine.line.ToCharArray())
         {
+            IsDialogueInProgress = true;
             dialogueArea.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
+            yield return new WaitForSeconds(TypingSpeed);
         }
-        SentencesCount++;
+
+        IsDialogueInProgress = false;
+        TypingSpeed = _normalTypingSpeed;//work in progress..
     }
 
     void EndDialogue()
