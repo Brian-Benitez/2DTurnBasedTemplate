@@ -380,7 +380,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   CanAttackAgain: 0
-  _timeBtwAttack: 0
+  _timeBtwAttack: 1
+  _maxTimeBtwAttacks: 0
 --- !u!1 &472085123
 GameObject:
   m_ObjectHideFlags: 0

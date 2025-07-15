@@ -9,11 +9,21 @@ public class PlayerMeleeAttack : MonoBehaviour
     public int PlayerDamage;
     public LayerMask WhatIsEnemies;
     public bool CanAttackAgain = false;
-    public float _timeBtwAttack = 0;
 
-    private void Update()//we need to make a timer for when you can attack again!
+    public float _timeBtwAttack;
+
+    [SerializeField]
+    private float _maxTimeBtwAttacks;
+
+    private void Start()
     {
-        if (Input.GetMouseButtonUp(0))
+        _maxTimeBtwAttacks = _timeBtwAttack;
+        RestartTimerForAttacks();
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonUp(0) && CanAttackAgain)
         {
             Debug.Log("hi");
             Collider2D[] enemiesToDamges = Physics2D.OverlapCircleAll(AttackPos.position, AttackRange, WhatIsEnemies);
@@ -21,13 +31,21 @@ public class PlayerMeleeAttack : MonoBehaviour
             {
                 enemiesToDamges[i].GetComponent<EnemyController>().TakeDamage(PlayerDamage);
             }
+            RestartTimerForAttacks();
+        }
+        if(_timeBtwAttack <= 0f)
+        {
+            CanAttackAgain = true;
+            return;
         }
         else
         {
-            //_timeBtwAttack -= Time.deltaTime;
+            _timeBtwAttack -= Time.deltaTime;
+            CanAttackAgain = false;
         }
-
+            
     }
+    void RestartTimerForAttacks() => _timeBtwAttack = _maxTimeBtwAttacks;
 
     private void OnDrawGizmosSelected()
     {
