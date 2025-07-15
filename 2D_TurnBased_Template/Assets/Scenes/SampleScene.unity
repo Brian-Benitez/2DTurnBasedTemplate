@@ -372,16 +372,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22db64af34b10ec4492524f6125ff783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartTimeBtwAttack: 1
   AttackPos: {fileID: 1091878788}
   AttackRange: 2
+  TimeBtwAttack: 1
   PlayerDamage: 1
   WhatIsEnemies:
     serializedVersion: 2
     m_Bits: 8
   CanAttackAgain: 0
-  _timeBtwAttack: 1
-  _maxTimeBtwAttacks: 0
 --- !u!1 &472085123
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,22 +2,28 @@ using UnityEngine;
 
 public class PlayerMeleeAttack : MonoBehaviour
 {
-    public float StartTimeBtwAttack;
-
+    [Header("Transforms")]
     public Transform AttackPos;
+
+    [Header("Floats")]
     public float AttackRange;
+    public float TimeBtwAttack;
+
+    [Header("Ints")]
     public int PlayerDamage;
+
+    [Header("LayerMasks")]
     public LayerMask WhatIsEnemies;
+
+    [Header("Booleans")]
     public bool CanAttackAgain = false;
 
-    public float _timeBtwAttack;
-
-    [SerializeField]
+    //[SerializeField]
     private float _maxTimeBtwAttacks;
 
     private void Start()
     {
-        _maxTimeBtwAttacks = _timeBtwAttack;
+        _maxTimeBtwAttacks = TimeBtwAttack;
         RestartTimerForAttacks();
     }
 
@@ -33,19 +39,19 @@ public class PlayerMeleeAttack : MonoBehaviour
             }
             RestartTimerForAttacks();
         }
-        if(_timeBtwAttack <= 0f)
+        if(TimeBtwAttack <= 0f)
         {
             CanAttackAgain = true;
             return;
         }
         else
         {
-            _timeBtwAttack -= Time.deltaTime;
+            TimeBtwAttack -= Time.deltaTime;
             CanAttackAgain = false;
         }
             
     }
-    void RestartTimerForAttacks() => _timeBtwAttack = _maxTimeBtwAttacks;
+    void RestartTimerForAttacks() => TimeBtwAttack = _maxTimeBtwAttacks;
 
     private void OnDrawGizmosSelected()
     {
