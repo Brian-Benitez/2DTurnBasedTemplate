@@ -16,7 +16,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     public LayerMask WhatIsEnemies;
 
     [Header("Booleans")]
-    public bool CanAttackAgain = false;
+    public bool CanMeleeAttackAgain = false;
 
     //[SerializeField]
     private float _maxTimeBtwAttacks;
@@ -29,7 +29,7 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonUp(0) && CanAttackAgain)
+        if (Input.GetMouseButtonUp(0) && CanMeleeAttackAgain)
         {
             Debug.Log("hi");
             Collider2D[] enemiesToDamges = Physics2D.OverlapCircleAll(AttackPos.position, AttackRange, WhatIsEnemies);
@@ -41,13 +41,13 @@ public class PlayerMeleeAttack : MonoBehaviour
         }
         if(TimeBtwAttack <= 0f)
         {
-            CanAttackAgain = true;
+            CanMeleeAttackAgain = true;
             return;
         }
         else
         {
             TimeBtwAttack -= Time.deltaTime;
-            CanAttackAgain = false;
+            CanMeleeAttackAgain = false;
         }
             
     }
