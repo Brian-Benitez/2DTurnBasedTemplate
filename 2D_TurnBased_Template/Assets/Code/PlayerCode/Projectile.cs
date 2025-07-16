@@ -17,10 +17,10 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        RaycastHit2D hitinfo = Physics2D.Raycast(transform.position, transform.up, DistanceOfProjectile);
+        RaycastHit2D hitinfo = Physics2D.Raycast(transform.position, transform.up, DistanceOfProjectile, Enemy);
         if(hitinfo.collider != null)
         {
-            if (hitinfo.collider.CompareTag("Enemy"))
+            if (hitinfo)
             {
                 Debug.Log("eneny hit!");
                 hitinfo.collider.GetComponent<EnemyController>().TakeDamage(RangeDamage);
@@ -30,6 +30,7 @@ public class Projectile : MonoBehaviour
         
         transform.Translate(Vector2.up * SpeedOfProjectile * Time.deltaTime);
     }
+
     void DestroyProjectile()
     {
         Destroy(gameObject);
