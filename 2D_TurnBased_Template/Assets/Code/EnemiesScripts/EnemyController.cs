@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour// I need to make this better, theres gonna be diff types of enemys with diff stats!
 {
     public int EnemyHealth;
     public int EnemySpeed;
+    public int EnemyDamageOutput;
 
     public void TakeDamage(int damage)
     {
