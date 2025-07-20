@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour// I need to make this better, theres gonna be diff types of enemys with diff stats!
+public class BaseEnemy : MonoBehaviour
 {
     public int EnemyHealth;
     public int EnemySpeed;
-    public int EnemyDamageOutput;
+    public int EnemyDamage;
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int  damage)
     {
         EnemyHealth -= damage;
-        Debug.Log("enemy took: " +  damage);
+        Debug.Log("enemy took: " + damage);
         DoesEnemyDie();
     }
 
@@ -22,6 +22,4 @@ public class EnemyController : MonoBehaviour// I need to make this better, there
         else
             Debug.Log("has health stil");
     }
-
 }
-

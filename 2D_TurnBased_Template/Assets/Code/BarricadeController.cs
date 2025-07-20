@@ -2,18 +2,26 @@ using UnityEngine;
 
 public class BarricadeController : MonoBehaviour
 {
-    public int BarricadeHealth;
+    public static BarricadeController Instance { get; private set; }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    [SerializeField]
+    private int BarricadeHealth;
+
+    private void Awake()
     {
-        if(collision.CompareTag("Enemy"))//im already checking layermasks, maybe i can do that here as well?
-            BarricadeTakesDamage(GetComponent<EnemyController>().EnemyDamageOutput);// I dont like this tbh
+        if(Instance == null)
+            Instance = this;
     }
 
-
-    void BarricadeTakesDamage(int damage)
+    public void BarricadeTakesDamage(int damage)
     {
         BarricadeHealth -= damage;
         Debug.Log("barricade took damage!");
+    }
+
+    public void BarricadeHealsHealth(int heals)
+    {
+        BarricadeHealth += heals;
+        Debug.Log("barricade heals for: " +  heals);    
     }
 }
