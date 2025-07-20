@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
             if (hitinfo)
             {
                 Debug.Log("eneny hit!");
-                //hitinfo.collider.GetComponent<EnemyController>().TakeDamage(RangeDamage);
+                hitinfo.collider.GetComponent<BaseEnemy>().TakeDamage(RangeDamage);
             }
             DestroyProjectile();
         }
