@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 386186103}
   - component: {fileID: 386186102}
   - component: {fileID: 386186101}
-  - component: {fileID: 386186105}
+  - component: {fileID: 386186108}
   - component: {fileID: 386186106}
   - component: {fileID: 386186104}
   - component: {fileID: 386186107}
@@ -344,24 +344,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.021438122, y: 0.010719061}
   m_Size: {x: 1.9432802, y: 2.8789659}
   m_Direction: 0
---- !u!114 &386186105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 386186100}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aec101a16725cf04983bc9a6d73e0806, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayersBaseStats: {fileID: 11400000, guid: 74646401ba021b149a5aac3f5a8ff68d, type: 2}
-  PlayersNameText: {fileID: 1280572614}
-  PlayersHealthText: {fileID: 2095250109}
-  PlayersMaxHealthText: {fileID: 1264793672}
-  PlayersSanityText: {fileID: 869693093}
-  PlayersLevelText: {fileID: 1066548215}
 --- !u!114 &386186106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,6 +385,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &386186108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386186100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fd47b04eb2120d4db60a92812896876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NameOfCharacter: Player name here
+  CharacterHealthAmount: 10
+  CharacterMaxHealthLevel: 10
+  CharacterDamageOutput: 1
+  CharacterSanityAmount: 100
+  CharacterMaxSanityLevel: 100
 --- !u!1 &472085123
 GameObject:
   m_ObjectHideFlags: 0

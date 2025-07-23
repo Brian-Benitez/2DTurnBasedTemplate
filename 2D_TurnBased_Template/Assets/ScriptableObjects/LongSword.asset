@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f98c67b9d850bf4aba79040e2b1458b, type: 3}
   m_Name: LongSword
   m_EditorClassIdentifier: 
-  SwordName: GreatSword
+  SwordName: LongSword
   SwordDamage: 10
   SwordBuff: 1
   SwordDebuff: 1
