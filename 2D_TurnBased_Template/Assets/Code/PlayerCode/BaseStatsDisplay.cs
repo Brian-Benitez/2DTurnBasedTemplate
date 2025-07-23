@@ -5,7 +5,7 @@ using TMPro;
 public class BaseStatsDisplay : MonoBehaviour
 {
     [Header("Base Stats Objects")]
-    public BaseStats PlayersBaseStats;
+    //public BaseStats PlayersBaseStats;
 
     [Header("Players UI")]
     public TextMeshProUGUI PlayersNameText;
@@ -16,10 +16,10 @@ public class BaseStatsDisplay : MonoBehaviour
 
     private void Start()
     {
-        PlayersNameText.text = PlayersBaseStats.Name;
-        PlayersHealthText.text = PlayersBaseStats.Health.ToString();
-        PlayersMaxHealthText.text = PlayersBaseStats.MaxHealth.ToString();
-        PlayersSanityText.text = PlayersBaseStats.Sanity.ToString();
-        PlayersLevelText.text = PlayersBaseStats.Level.ToString();  
+        //PlayersNameText.text = PlayersBaseStats.Name;
+        //PlayersHealthText.text = PlayersBaseStats.Health.ToString();
+        //PlayersMaxHealthText.text = PlayersBaseStats.MaxHealth.ToString();
+       // PlayersSanityText.text = PlayersBaseStats.Sanity.ToString();
+        //PlayersLevelText.text = PlayersBaseStats.Level.ToString();  
     }
 }
