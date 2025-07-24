@@ -33,6 +33,7 @@ public class PlayerMeleeAttack : MonoBehaviour
         {
             Debug.Log("hi");
             Collider2D[] enemiesToDamges = Physics2D.OverlapCircleAll(AttackPos.position, AttackRange, WhatIsEnemies);
+            //need to check if your hitting nothing
             for (int i = 0; i < enemiesToDamges.Length; i++)
             {
                 enemiesToDamges[i].GetComponent<BaseEnemy>().TakeDamage(PlayerDamage);

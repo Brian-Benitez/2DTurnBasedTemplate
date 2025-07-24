@@ -20,18 +20,24 @@ public class EnemyMeleeAttack : MonoBehaviour
         EnemySwordsmanRef = gameObject.GetComponentInParent<EnemySwordsman>();
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") || collision.CompareTag("Barricade") || collision.CompareTag("NPC"))//not great but need to check
+        {
+            if (CanHitAgain)
+            {
+                Collider2D[] enemiesToDamges = Physics2D.OverlapCircleAll(MeleePos.position, AttackRange, WhatisHittable);
+                for (int i = 0; i < enemiesToDamges.Length; i++)
+                {
+                    enemiesToDamges[i].GetComponent<BaseCharacter>().TakeDamage(EnemySwordsmanRef.EnemyDamage);
+                }
+                Debug.Log("hit player for: " + EnemySwordsmanRef.EnemyDamage);
+            }
+        }
+    }
+
     void Update()
     {
-        if(CanHitAgain)
-        {
-            Collider2D[] enemiesToDamges = Physics2D.OverlapCircleAll(MeleePos.position, AttackRange, WhatisHittable);
-            for (int i = 0; i < enemiesToDamges.Length; i++)
-            {
-                enemiesToDamges[i].GetComponent<BaseCharacter>().TakeDamage(EnemySwordsmanRef.EnemyDamage);
-            }
-            Debug.Log("hit player for: " + EnemySwordsmanRef.EnemyDamage);
-        }
-
         if (TimeBtwAttack <= 0f)
         {
             CanHitAgain = true;
