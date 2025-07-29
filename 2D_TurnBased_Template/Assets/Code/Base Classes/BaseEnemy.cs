@@ -24,11 +24,4 @@ public class BaseEnemy : MonoBehaviour
         else
             Debug.Log("has health stil");
     }
-
-    public void Delay(float time, System.Action _callBack)
-    {
-        Sequence seq = DOTween.Sequence();
-
-        seq.AppendInterval(time).AppendCallback(() => _callBack());
-    }
 }

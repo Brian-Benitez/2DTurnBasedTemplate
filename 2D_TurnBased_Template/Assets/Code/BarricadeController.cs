@@ -4,8 +4,7 @@ public class BarricadeController : MonoBehaviour
 {
     public static BarricadeController Instance { get; private set; }
 
-    [SerializeField]
-    private int BarricadeHealth;
+    public int BarricadeHealth;
 
     private void Awake()
     {

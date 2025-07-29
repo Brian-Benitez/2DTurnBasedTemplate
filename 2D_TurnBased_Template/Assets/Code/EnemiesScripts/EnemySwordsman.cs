@@ -6,11 +6,7 @@ public class EnemySwordsman : BaseEnemy
     {
         if (collision.collider.CompareTag("Barricade"))
         {
-            Delay(EnemyDamageRate, () =>
-            {
-                BarricadeController.Instance.BarricadeTakesDamage(EnemyDamage);
-                Debug.Log("did damage!");
-            });
+           
         }
     }
 }
