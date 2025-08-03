@@ -9,8 +9,8 @@ public class MovementForEnemy : MonoBehaviour
     public Transform CurrentTarget;
 
     public float MovementSpeed;
-    [SerializeField]
-    private float _distance;
+
+    public float _distanceFromTarget;
     private EnemyMeleeAttack enemyMeleeAttackRef;
 
     private void Start()
@@ -25,7 +25,7 @@ public class MovementForEnemy : MonoBehaviour
             return;
 
 
-        _distance = Vector2.Distance(transform.position, CurrentTarget.transform.position);
+        _distanceFromTarget = Vector2.Distance(transform.position, CurrentTarget.transform.position);
         Vector2 direction = CurrentTarget.transform.position - transform.position;
 
         transform.position = Vector2.MoveTowards(this.transform.position, CurrentTarget.transform.position, MovementSpeed * Time.deltaTime);

@@ -19,14 +19,16 @@ public class EnemyMeleeAttack : MonoBehaviour
     public LayerMask BarricadeLayerMask;
 
     private EnemySwordsman EnemySwordsmanRef;
+    private MovementForEnemy MovementForEnemyRef;
     private float _maxTimeBtwAttacks;
 
     private void Start()
     {
         _maxTimeBtwAttacks = TimeBtwAttack;
         EnemySwordsmanRef = gameObject.GetComponentInParent<EnemySwordsman>();
+        MovementForEnemyRef = gameObject.GetComponentInParent<MovementForEnemy>();
     }
-
+    /*
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") || collision.CompareTag("Barricade") || collision.CompareTag("NPC"))
@@ -34,16 +36,33 @@ public class EnemyMeleeAttack : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D collision) => WithinRange = false;
+    */
+
 
     void Update()
     {
+        if(MovementForEnemyRef._distanceFromTarget < 1.6f)//this is ugly but it works need to update/ work on this
+            WithinRange = true;
+        else
+            WithinRange = false;
+
+
         if (CanHitAgain && WithinRange)
         {
             Collider2D[] enemiesToDamges = Physics2D.OverlapCircleAll(MeleePos.position, AttackRange, WhatisHittable);
             for (int i = 0; i < enemiesToDamges.Length; i++)
             {
-                enemiesToDamges[i].GetComponent<BaseCharacter>().TakeDamage(EnemySwordsmanRef.EnemyDamage);
-                Debug.Log("Enemy hit " + enemiesToDamges[i].gameObject.name + "for " + EnemySwordsmanRef.EnemyDamage);
+                Debug.Log("check this " + enemiesToDamges[i].gameObject.layer);
+                if (enemiesToDamges[i].gameObject.layer == 7)
+                {
+                    Debug.Log("hi looooooooooooooooook");
+                }
+                else
+                {
+                    enemiesToDamges[i].GetComponent<BaseCharacter>().TakeDamage(EnemySwordsmanRef.EnemyDamage);
+                    Debug.Log("Enemy hit " + enemiesToDamges[i].gameObject.name + "for " + EnemySwordsmanRef.EnemyDamage);
+                }
+
             }
             RestartTimerForAttacks();
         }
