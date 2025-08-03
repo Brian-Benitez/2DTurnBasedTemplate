@@ -16,6 +16,7 @@ public class EnemyMeleeAttack : MonoBehaviour
 
     [Header("Layermasks for what can be hit")]
     public LayerMask WhatisHittable;
+    public LayerMask BarricadeLayerMask;
 
     private EnemySwordsman EnemySwordsmanRef;
     private float _maxTimeBtwAttacks;
@@ -42,9 +43,9 @@ public class EnemyMeleeAttack : MonoBehaviour
             for (int i = 0; i < enemiesToDamges.Length; i++)
             {
                 enemiesToDamges[i].GetComponent<BaseCharacter>().TakeDamage(EnemySwordsmanRef.EnemyDamage);
+                Debug.Log("Enemy hit " + enemiesToDamges[i].gameObject.name + "for " + EnemySwordsmanRef.EnemyDamage);
             }
             RestartTimerForAttacks();
-            Debug.Log("hit player for: " + EnemySwordsmanRef.EnemyDamage);
         }
 
         if (TimeBtwAttack <= 0f)
