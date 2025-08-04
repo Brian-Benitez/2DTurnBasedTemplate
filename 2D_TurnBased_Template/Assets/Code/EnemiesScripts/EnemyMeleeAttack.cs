@@ -18,6 +18,9 @@ public class EnemyMeleeAttack : MonoBehaviour
     public LayerMask WhatisHittable;
     public LayerMask BarricadeLayerMask;
 
+    [Header("Layer Mask Indexs")]
+    public int BarriacdeLayerMaskIndex = 7;
+
     private EnemySwordsman EnemySwordsmanRef;
     private MovementForEnemy MovementForEnemyRef;
     private float _maxTimeBtwAttacks;
@@ -52,17 +55,15 @@ public class EnemyMeleeAttack : MonoBehaviour
             Collider2D[] enemiesToDamges = Physics2D.OverlapCircleAll(MeleePos.position, AttackRange, WhatisHittable);
             for (int i = 0; i < enemiesToDamges.Length; i++)
             {
-                Debug.Log("check this " + enemiesToDamges[i].gameObject.layer);
-                if (enemiesToDamges[i].gameObject.layer == 7)
+                if (enemiesToDamges[i].gameObject.layer == BarriacdeLayerMaskIndex)
                 {
-                    Debug.Log("hi looooooooooooooooook");
+                    BarricadeController.Instance.BarricadeTakesDamage(EnemySwordsmanRef.EnemyDamage);
                 }
                 else
                 {
                     enemiesToDamges[i].GetComponent<BaseCharacter>().TakeDamage(EnemySwordsmanRef.EnemyDamage);
                     Debug.Log("Enemy hit " + enemiesToDamges[i].gameObject.name + "for " + EnemySwordsmanRef.EnemyDamage);
                 }
-
             }
             RestartTimerForAttacks();
         }
