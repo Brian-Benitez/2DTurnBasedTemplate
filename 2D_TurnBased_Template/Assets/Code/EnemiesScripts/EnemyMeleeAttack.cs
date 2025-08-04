@@ -21,6 +21,9 @@ public class EnemyMeleeAttack : MonoBehaviour
     [Header("Layer Mask Indexs")]
     public int BarriacdeLayerMaskIndex = 7;
 
+    [Header("Stopping distance for melee")]
+    public float StoppingDistanceFromTarget = 1.6f;
+
     private EnemySwordsman EnemySwordsmanRef;
     private MovementForEnemy MovementForEnemyRef;
     private float _maxTimeBtwAttacks;
@@ -31,20 +34,10 @@ public class EnemyMeleeAttack : MonoBehaviour
         EnemySwordsmanRef = gameObject.GetComponentInParent<EnemySwordsman>();
         MovementForEnemyRef = gameObject.GetComponentInParent<MovementForEnemy>();
     }
-    /*
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player") || collision.CompareTag("Barricade") || collision.CompareTag("NPC"))
-            WithinRange = true;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision) => WithinRange = false;
-    */
-
-
+   
     void Update()
     {
-        if(MovementForEnemyRef._distanceFromTarget < 1.6f)//this is ugly but it works need to update/ work on this
+        if(MovementForEnemyRef._distanceFromTarget < StoppingDistanceFromTarget)
             WithinRange = true;
         else
             WithinRange = false;
