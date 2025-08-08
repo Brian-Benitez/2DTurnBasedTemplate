@@ -1,3 +1,5 @@
+
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BarricadeController : MonoBehaviour
@@ -8,6 +10,9 @@ public class BarricadeController : MonoBehaviour
 
     [Header("Barricade Game Object")]
     public GameObject BarricadeGameObject;
+
+    [Header("Attack Points")]
+    public List<GameObject> AttackPointsLocation;
 
     private void Awake()
     {

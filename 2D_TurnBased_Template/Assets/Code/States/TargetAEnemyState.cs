@@ -1,12 +1,14 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class TargetAEnemyState : State
 {
     [Header("State")]
     public ChaseState ChaseState;
-
+    [Header("Bool")]
     public bool HaveATarget = false;
-    public Transform CurrentTarget;
+    [Header("Current obj target")]
+    public GameObject CurrentTarget;
 
     public override State RunCurrentState()
     {   
@@ -15,9 +17,9 @@ public class TargetAEnemyState : State
         else if(!HaveATarget)
         {
             if (BarricadeController.Instance.BarricadeHealth > 0)
-                CurrentTarget = BarricadeController.Instance.BarricadeGameObject.transform;
+                CurrentTarget = BarricadeController.Instance.AttackPointsLocation[PickAttackPointOnBarricade()];
             else if (PlayerInfo.instance.CharacterHealthAmount > 0)
-                CurrentTarget = PlayerInfo.instance.PlayerObject.transform;
+                CurrentTarget = PlayerInfo.instance.PlayerObject;
 
             HaveATarget = true; 
             Debug.Log("The new target is " +  CurrentTarget.name);
@@ -30,5 +32,7 @@ public class TargetAEnemyState : State
     {
        return Random.Range(0, 10);
     }
+
+    private int PickAttackPointOnBarricade() =>  Random.Range(0, BarricadeController.Instance.AttackPointsLocation.Count);
 
 }
