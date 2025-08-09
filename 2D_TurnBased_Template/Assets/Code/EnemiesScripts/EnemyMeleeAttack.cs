@@ -25,19 +25,20 @@ public class EnemyMeleeAttack : MonoBehaviour
     public float StoppingDistanceFromTarget = 1.6f;
 
     private EnemySwordsman EnemySwordsmanRef;
-    private MovementForEnemy MovementForEnemyRef;
+    ChaseState ChaseState;
+
     private float _maxTimeBtwAttacks;
 
     private void Start()
     {
         _maxTimeBtwAttacks = TimeBtwAttack;
         EnemySwordsmanRef = gameObject.GetComponentInParent<EnemySwordsman>();
-        MovementForEnemyRef = gameObject.GetComponentInParent<MovementForEnemy>();
+        ChaseState = GetComponentInParent<ChaseState>();
     }
    
     void Update()
     {
-        if(MovementForEnemyRef._distanceFromTarget < StoppingDistanceFromTarget)
+        if(ChaseState._distanceFromTarget < StoppingDistanceFromTarget)
             WithinRange = true;
         else
             WithinRange = false;

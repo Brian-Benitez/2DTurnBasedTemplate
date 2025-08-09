@@ -4,11 +4,16 @@ using UnityEngine;
 public class TargetAEnemyState : State
 {
     [Header("State")]
-    public ChaseState ChaseState;
+    ChaseState ChaseState;
     [Header("Bool")]
     public bool HaveATarget = false;
     [Header("Current obj target")]
     public GameObject CurrentTarget;
+
+    private void Start()
+    {
+        ChaseState = GetComponent<ChaseState>();
+    }
 
     public override State RunCurrentState()
     {   
