@@ -38,12 +38,6 @@ public class EnemyMeleeAttack : MonoBehaviour
    
     void Update()
     {
-        if(ChaseState._distanceFromTarget < StoppingDistanceFromTarget)
-            WithinRange = true;
-        else
-            WithinRange = false;
-
-
         if (CanHitAgain && WithinRange)
         {
             Collider2D[] enemiesToDamges = Physics2D.OverlapCircleAll(MeleePos.position, AttackRange, WhatisHittable);
@@ -76,6 +70,8 @@ public class EnemyMeleeAttack : MonoBehaviour
 
     void RestartTimerForAttacks() => TimeBtwAttack = _maxTimeBtwAttacks;
 
+    public void IsWithinAttackingRange() => WithinRange = true;
+    public void NotWithinAttackingRange() => WithinRange = false;
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

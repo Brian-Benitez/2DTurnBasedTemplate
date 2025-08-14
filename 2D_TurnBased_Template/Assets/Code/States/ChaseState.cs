@@ -23,7 +23,12 @@ public class ChaseState : State
 
     private void Update()
     {
-        if(EnemyMeleeAttackRef.WithinRange)
+        if (_distanceFromTarget < EnemyMeleeAttackRef.StoppingDistanceFromTarget)
+            EnemyMeleeAttackRef.IsWithinAttackingRange();
+        else
+            EnemyMeleeAttackRef.NotWithinAttackingRange();
+
+        if (EnemyMeleeAttackRef.WithinRange)
             return;
         if(TargetAEnemyState.HaveATarget)
         {
