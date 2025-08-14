@@ -9,6 +9,7 @@ public class TargetAEnemyState : State
     public bool HaveATarget = false;
     [Header("Current obj target")]
     public GameObject CurrentTarget;
+    int _newEnemyIndex = 0;
 
     private void Start()
     {
@@ -22,7 +23,10 @@ public class TargetAEnemyState : State
         else if(!HaveATarget)
         {
             if (BarricadeController.Instance.BarricadeHealth > 0)
-                CurrentTarget = BarricadeController.Instance.AttackPointsLocation[PickAttackPointOnBarricade()];
+            {
+                PickAttackPointOnBarricade();
+                CurrentTarget = BarricadeController.Instance.AttackPointsLocation[_newEnemyIndex];
+            }
             else if (PlayerInfo.instance.CharacterHealthAmount > 0)
                 CurrentTarget = PlayerInfo.instance.PlayerObject;
 
@@ -38,6 +42,11 @@ public class TargetAEnemyState : State
        return Random.Range(0, 10);
     }
 
-    private int PickAttackPointOnBarricade() =>  Random.Range(0, BarricadeController.Instance.AttackPointsLocation.Count);
+    private void PickAttackPointOnBarricade()
+    {
+        _newEnemyIndex = 0;
+        Debug.Log("checek " + BarricadeController.Instance.AttackPointsLocation.Count);
+       _newEnemyIndex =  Random.Range(0, BarricadeController.Instance.AttackPointsLocation.Count);
+    }
 
 }
