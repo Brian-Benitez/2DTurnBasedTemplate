@@ -27,8 +27,7 @@ public class TargetAEnemyState : State
                 PickAttackPointOnBarricade();
                 CurrentTarget = BarricadeController.Instance.AttackPointsLocation[_newEnemyIndex];
             }
-            else if (PlayerInfo.instance.CharacterHealthAmount > 0)
-                CurrentTarget = PlayerInfo.instance.PlayerObject;
+            //add player health stuff here
 
             HaveATarget = true; 
             Debug.Log("The new target is " +  CurrentTarget.name);

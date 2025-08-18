@@ -11,24 +11,20 @@ public class ChaseState : State
     public float MovementSpeed;
     public float _distanceFromTarget;//debuging keep it public
 
-    [Header("Scripts")]
-    EnemyMeleeAttack EnemyMeleeAttackRef;
-
     private void Start()
     {
         TargetAEnemyState = GetComponentInParent<TargetAEnemyState>();
         AttackState = GetComponent<AttackState>();  
-        EnemyMeleeAttackRef = GetComponentInChildren<EnemyMeleeAttack>();
     }
 
     private void Update()
     {
-        if (_distanceFromTarget < EnemyMeleeAttackRef.StoppingDistanceFromTarget)
-            EnemyMeleeAttackRef.IsWithinAttackingRange();
+        if (_distanceFromTarget < AttackState.StoppingDistanceFromTarget)
+            AttackState.IsWithinAttackingRange();
         else
-            EnemyMeleeAttackRef.NotWithinAttackingRange();
+            AttackState.NotWithinAttackingRange();
 
-        if (EnemyMeleeAttackRef.WithinRange)
+        if (AttackState.WithinRange)//gets the enemy to stop moving
             return;
         if(TargetAEnemyState.HaveATarget)
         {
@@ -39,7 +35,7 @@ public class ChaseState : State
     }
     public override State RunCurrentState()
     {
-        if (TargetAEnemyState.HaveATarget && EnemyMeleeAttackRef.WithinRange)
+        if (TargetAEnemyState.HaveATarget && AttackState.WithinRange)
             return AttackState;
 
         return this;

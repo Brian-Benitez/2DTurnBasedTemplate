@@ -35,12 +35,4 @@ public class BaseCharacter : MonoBehaviour
         else
             Debug.Log(NameOfCharacter + " Still has health");
     }
-
-    public void Delay(float time, System.Action _callBack)
-    {
-        Sequence seq = DOTween.Sequence();
-
-        seq.AppendInterval(time).AppendCallback(() => _callBack());
-    }
-
 }
