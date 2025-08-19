@@ -89,7 +89,11 @@ public class AttackState : State
             TargetAEnemyState.TurnOffBoolHaveATarget();
             return TargetAEnemyState;
         }
-        else
-            return this;
+        else if (NPCController.Instance.GoodGuysList[NPCController.Instance.CurrentGoodGuyIndex].GetComponent<BaseCharacter>().CharacterHealthAmount > 0)
+        {
+            Debug.Log("hi");
+        }
+        return this;
+
     }
 }

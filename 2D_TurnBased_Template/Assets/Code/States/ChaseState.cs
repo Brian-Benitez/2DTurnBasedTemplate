@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ChaseState : State
 {
@@ -19,7 +20,7 @@ public class ChaseState : State
 
     private void Update()
     {
-        if (_distanceFromTarget < AttackState.StoppingDistanceFromTarget)
+        if (_distanceFromTarget < AttackState.StoppingDistanceFromTarget)//This is where our issues lay. the _distancefromtarget needs to be reupdated to a higher number for some reason to chase someone.
             AttackState.IsWithinAttackingRange();
         else
             AttackState.NotWithinAttackingRange();

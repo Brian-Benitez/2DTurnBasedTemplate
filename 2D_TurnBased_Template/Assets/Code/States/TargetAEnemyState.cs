@@ -10,6 +10,7 @@ public class TargetAEnemyState : State
     [Header("Current obj target")]
     public GameObject CurrentTarget;
     int _newEnemyIndex = 0;
+    public int GoodGuyIndex = 0;
 
     private void Start()
     {
@@ -22,12 +23,15 @@ public class TargetAEnemyState : State
             return ChaseState;
         else if(!HaveATarget)
         {
-            if (BarricadeController.Instance.BarricadeHealth > 0)
+            if (BarricadeController.Instance.BarricadeHealth > 0)// if ther barricade got health,go to it!
             {
                 PickAttackPointOnBarricade();
                 CurrentTarget = BarricadeController.Instance.AttackPointsLocation[_newEnemyIndex];
             }
-            //add player health stuff here
+            else//if not pick a good guy to go to
+            {
+                CurrentTarget = NPCController.Instance.GoodGuysList[NPCController.Instance.PickGoodGuyAtRandom()];
+            }
 
             HaveATarget = true; 
             Debug.Log("The new target is " +  CurrentTarget.name);

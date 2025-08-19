@@ -601,6 +601,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1939129271}
+  - {fileID: 823456627}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
@@ -1080,10 +1081,10 @@ MonoBehaviour:
   WithinRange: 0
   WhatisHittable:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 192
   BarricadeLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   BarriacdeLayerMaskIndex: 7
   StoppingDistanceFromTarget: 1.6
 --- !u!114 &549116303
@@ -1099,7 +1100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 5
-  _distanceFromTarget: 1.6
+  _distanceFromTarget: 0
 --- !u!114 &549116304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1114,6 +1115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HaveATarget: 0
   CurrentTarget: {fileID: 0}
+  GoodGuyIndex: 0
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1395,6 +1397,53 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &823456626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 823456627}
+  - component: {fileID: 823456628}
+  m_Layer: 0
+  m_Name: NPCController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &823456627
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823456626}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 481305509}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &823456628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823456626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f87f7445b6213b45b9f073d4360a451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GoodGuysList:
+  - {fileID: 386186100}
+  CurrentGoodGuyIndex: 0
 --- !u!1 &851489446
 GameObject:
   m_ObjectHideFlags: 0
@@ -3205,7 +3254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ac051be44d06ae4f83ba790e69561bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BarricadeHealth: 10
+  BarricadeHealth: 2
   BarricadeGameObject: {fileID: 1407089243}
   AttackPointsLocation:
   - {fileID: 943578855}
