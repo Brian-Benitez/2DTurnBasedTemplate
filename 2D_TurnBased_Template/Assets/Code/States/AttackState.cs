@@ -75,25 +75,20 @@ public class AttackState : State
 
     public void IsWithinAttackingRange() => WithinRange = true;
     public void NotWithinAttackingRange() => WithinRange = false;
+
+    public override State RunCurrentState()//this is ther issue, this should not carry on while players are still alive
+    {
+        if (BarricadeController.Instance.BarricadeEnabled == false)
+        {
+
+        }
+        return this;
+    }
+
+    //--------------------------------------------------------------------------------------------------------------------------->
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(MeleePos.position, AttackRange);
-    }
-
-    public override State RunCurrentState()
-    {
-        if (BarricadeController.Instance.BarricadeHealth < 0)
-        {
-            Debug.Log("barricade is dead");
-            TargetAEnemyState.TurnOffBoolHaveATarget();
-            return TargetAEnemyState;
-        }
-        else if (NPCController.Instance.GoodGuysList[NPCController.Instance.CurrentGoodGuyIndex].GetComponent<BaseCharacter>().CharacterHealthAmount > 0)
-        {
-            Debug.Log("hi");
-        }
-        return this;
-
     }
 }

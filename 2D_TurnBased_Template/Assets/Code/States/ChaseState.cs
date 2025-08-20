@@ -10,7 +10,7 @@ public class ChaseState : State
 
     [Header("Floats")]
     public float MovementSpeed;
-    public float _distanceFromTarget;//debuging keep it public
+    public float DistanceFromTarget;
 
     private void Start()
     {
@@ -20,7 +20,7 @@ public class ChaseState : State
 
     private void Update()
     {
-        if (_distanceFromTarget < AttackState.StoppingDistanceFromTarget)//This is where our issues lay. the _distancefromtarget needs to be reupdated to a higher number for some reason to chase someone.
+        if (DistanceFromTarget < AttackState.StoppingDistanceFromTarget)
             AttackState.IsWithinAttackingRange();
         else
             AttackState.NotWithinAttackingRange();
@@ -29,11 +29,13 @@ public class ChaseState : State
             return;
         if(TargetAEnemyState.HaveATarget)
         {
-            _distanceFromTarget = Vector2.Distance(transform.position, TargetAEnemyState.CurrentTarget.transform.position);
+            DistanceFromTarget = Vector2.Distance(transform.position, TargetAEnemyState.CurrentTarget.transform.position);
             Vector2 direction = TargetAEnemyState.CurrentTarget.transform.position - transform.position;
             transform.position = Vector2.MoveTowards(this.transform.position, TargetAEnemyState.CurrentTarget.transform.position, MovementSpeed * Time.deltaTime);
         }
     }
+
+    public void RestartDistance() => DistanceFromTarget = 6f;
     public override State RunCurrentState()
     {
         if (TargetAEnemyState.HaveATarget && AttackState.WithinRange)

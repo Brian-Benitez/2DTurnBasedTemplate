@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters;
 using UnityEngine;
 
 public class NPCController : MonoBehaviour
@@ -23,4 +24,10 @@ public class NPCController : MonoBehaviour
         return index;
     }
     
+    public bool StillHasGoodGuys()
+    {
+        if (GoodGuysList.Count > 0)
+            return true;
+        else return false;
+    }
 }

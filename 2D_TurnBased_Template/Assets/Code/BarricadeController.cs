@@ -11,6 +11,8 @@ public class BarricadeController : MonoBehaviour
     [Header("Barricade Game Object")]
     public GameObject BarricadeGameObject;
 
+    public bool BarricadeEnabled = true;
+
     [Header("Attack Points")]
     public List<GameObject> AttackPointsLocation;
 
@@ -37,8 +39,14 @@ public class BarricadeController : MonoBehaviour
     private void CheckBarricadeHealth()
     {
         if(BarricadeHealth < 0)
+        {
             BarricadeGameObject.SetActive(false);
+            BarricadeEnabled = false;
+        }
         else
+        { 
             BarricadeGameObject.SetActive(true);
+            BarricadeEnabled = true;
+        }
     }
 }

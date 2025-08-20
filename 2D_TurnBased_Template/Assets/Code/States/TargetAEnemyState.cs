@@ -10,7 +10,6 @@ public class TargetAEnemyState : State
     [Header("Current obj target")]
     public GameObject CurrentTarget;
     int _newEnemyIndex = 0;
-    public int GoodGuyIndex = 0;
 
     private void Start()
     {
@@ -32,13 +31,14 @@ public class TargetAEnemyState : State
             {
                 CurrentTarget = NPCController.Instance.GoodGuysList[NPCController.Instance.PickGoodGuyAtRandom()];
             }
-
-            HaveATarget = true; 
+            ChaseState.RestartDistance();
+            TurnOnHaveATarget();
             Debug.Log("The new target is " +  CurrentTarget.name);
         }
         return this;
     }
 
+    public void TurnOnHaveATarget() => HaveATarget = true;
     public void TurnOffBoolHaveATarget () => HaveATarget = false;
     private int PickAEnemyIndex()
     {
