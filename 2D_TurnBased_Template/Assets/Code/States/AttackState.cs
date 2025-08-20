@@ -23,6 +23,8 @@ public class AttackState : State
     [Header("Stopping distance for melee")]
     public float StoppingDistanceFromTarget = 1.6f;
 
+
+    public bool ChangeToNewState = false;
     private EnemySwordsman EnemySwordsmanRef;
     //States ref here
     ChaseState ChaseState;
@@ -44,18 +46,27 @@ public class AttackState : State
         if (CanHitAgain && WithinRange)
         {
             Collider2D[] enemiesToDamges = Physics2D.OverlapCircleAll(MeleePos.position, AttackRange, WhatisHittable);
-            for (int i = 0; i < enemiesToDamges.Length; i++)
+
+            if (enemiesToDamges.Length == 0)
             {
-                if (enemiesToDamges[i].gameObject.layer == BarriacdeLayerMaskIndex)
-                {
-                    BarricadeController.Instance.BarricadeTakesDamage(EnemySwordsmanRef.EnemyDamage);
-                }
-                else
-                {
-                    enemiesToDamges[i].GetComponent<BaseCharacter>().TakeDamage(EnemySwordsmanRef.EnemyDamage);
-                    Debug.Log("Enemy hit " + enemiesToDamges[i].gameObject.name + "for " + EnemySwordsmanRef.EnemyDamage);
-                }
+                Debug.Log("i hit no one:(");
+                ChangeToNewState = true;
             }
+            else
+                ChangeToNewState = false;
+
+                for (int i = 0; i < enemiesToDamges.Length; i++)
+                {
+                    if (enemiesToDamges[i].gameObject.layer == BarriacdeLayerMaskIndex)
+                    {
+                        BarricadeController.Instance.BarricadeTakesDamage(EnemySwordsmanRef.EnemyDamage);
+                    }
+                    else
+                    {
+                        enemiesToDamges[i].GetComponent<BaseCharacter>().TakeDamage(EnemySwordsmanRef.EnemyDamage);
+                        Debug.Log("Enemy hit " + enemiesToDamges[i].gameObject.name + "for " + EnemySwordsmanRef.EnemyDamage);
+                    }
+                }
             RestartTimerForAttacks();
         }
 
@@ -78,9 +89,28 @@ public class AttackState : State
 
     public override State RunCurrentState()//this is ther issue, this should not carry on while players are still alive
     {
-        if (BarricadeController.Instance.BarricadeEnabled == false)
-        {
 
+        if(ChangeToNewState == true)
+        {
+            TargetAEnemyState.HaveATarget = false;
+            return TargetAEnemyState;
+        }
+        if(TargetAEnemyState.HaveATarget == false)
+        {
+            return TargetAEnemyState;
+        }
+
+
+        if (BarricadeController.Instance.BarricadeEnabled == false && BarricadeController.Instance.CanAttackBarricade == false)
+        {
+            BarricadeController.Instance.CanAttackBarricade = true;//get it ready for later
+            TargetAEnemyState.TurnOffBoolHaveATarget();
+            Debug.Log("fffuucckk");
+        }
+        else if(TargetAEnemyState.CurrentTarget.name == "Player")
+        {
+            if(TargetAEnemyState.CurrentTarget.GetComponent<BaseCharacter>().IsCharacterDead == true)
+                TargetAEnemyState.TurnOffBoolHaveATarget();
         }
         return this;
     }

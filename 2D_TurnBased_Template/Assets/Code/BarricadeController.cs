@@ -12,6 +12,7 @@ public class BarricadeController : MonoBehaviour
     public GameObject BarricadeGameObject;
 
     public bool BarricadeEnabled = true;
+    public bool CanAttackBarricade = true;
 
     [Header("Attack Points")]
     public List<GameObject> AttackPointsLocation;

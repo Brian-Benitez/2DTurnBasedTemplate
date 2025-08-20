@@ -13,6 +13,8 @@ public class BaseCharacter : MonoBehaviour
     [Header("Sanity")]
     public int CharacterSanityAmount;
     public int CharacterMaxSanityLevel;
+    [Header("Booleans")]
+    public bool IsCharacterDead = false;
 
     public void PrintInfo()
     {
@@ -30,9 +32,14 @@ public class BaseCharacter : MonoBehaviour
     {
         if (CharacterHealthAmount < 0)
         {
+            IsCharacterDead = true;
             this.gameObject.gameObject.SetActive(false);
         }
         else
+        {
             Debug.Log(NameOfCharacter + " Still has health");
+            IsCharacterDead = false;
+        }
+
     }
 }

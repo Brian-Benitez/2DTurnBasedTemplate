@@ -431,7 +431,7 @@ Transform:
   m_GameObject: {fileID: 386186100}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.8, y: -0.15547, z: 0}
+  m_LocalPosition: {x: -10, y: -0.15547, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -474,8 +474,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.021438122, y: 0.010719061}
-  m_Size: {x: 1.9432802, y: 2.8789659}
+  m_Offset: {x: 0.04676485, y: 0.010719061}
+  m_Size: {x: 1.8068743, y: 2.8789659}
   m_Direction: 0
 --- !u!114 &386186106
 MonoBehaviour:
@@ -536,6 +536,7 @@ MonoBehaviour:
   CharacterDamageOutput: 1
   CharacterSanityAmount: 100
   CharacterMaxSanityLevel: 100
+  IsCharacterDead: 0
   PlayerObject: {fileID: 386186100}
 --- !u!1 &472085123
 GameObject:
@@ -1189,6 +1190,7 @@ MonoBehaviour:
     m_Bits: 128
   BarriacdeLayerMaskIndex: 7
   StoppingDistanceFromTarget: 1.6
+  ChangeToNewState: 0
 --- !u!114 &549116303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1217,7 +1219,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HaveATarget: 0
   CurrentTarget: {fileID: 0}
-  GoodGuyIndex: 0
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2072,6 +2073,7 @@ MonoBehaviour:
   CharacterDamageOutput: 1
   CharacterSanityAmount: 1
   CharacterMaxSanityLevel: 1
+  IsCharacterDead: 0
 --- !u!1 &1066548214
 GameObject:
   m_ObjectHideFlags: 0
@@ -3315,6 +3317,7 @@ MonoBehaviour:
   CharacterDamageOutput: 1
   CharacterSanityAmount: 1
   CharacterMaxSanityLevel: 1
+  IsCharacterDead: 0
 --- !u!114 &1520964420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3717,6 +3720,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BarricadeHealth: 2
   BarricadeGameObject: {fileID: 1407089243}
+  BarricadeEnabled: 1
+  CanAttackBarricade: 0
   AttackPointsLocation:
   - {fileID: 943578855}
   - {fileID: 63572315}

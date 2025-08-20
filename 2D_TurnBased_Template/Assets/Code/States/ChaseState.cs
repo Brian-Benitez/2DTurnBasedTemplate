@@ -33,6 +33,8 @@ public class ChaseState : State
             Vector2 direction = TargetAEnemyState.CurrentTarget.transform.position - transform.position;
             transform.position = Vector2.MoveTowards(this.transform.position, TargetAEnemyState.CurrentTarget.transform.position, MovementSpeed * Time.deltaTime);
         }
+
+        Debug.Log("distance from target " + DistanceFromTarget);
     }
 
     public void RestartDistance() => DistanceFromTarget = 6f;
