@@ -25,18 +25,14 @@ public class TargetAEnemyState : State
             return ChaseState;
         else if(!HaveATarget)
         {
-            if (BarricadeController.Instance.BarricadeHealth > 0)// if ther barricade got health,go to it!
+            if (BarricadeController.Instance.BarricadeHealth > 0)
             {
                 PickAttackPointOnBarricade();
                 CurrentTarget = BarricadeController.Instance.AttackPointsLocation[_newEnemyIndex];
             }
-            else//if not pick a good guy to go to
-            {
-                if (BaseEnemyRef.EnemyType == BaseEnemy.TypeOfEnemy.Archer)
-                    Debug.Log("do something else");
-                else
-                    CurrentTarget = NPCController.Instance.GoodGuysList[NPCController.Instance.PickGoodGuyAtRandom()];
-            }
+            else
+                CurrentTarget = NPCController.Instance.GoodGuysList[NPCController.Instance.PickGoodGuyAtRandom()];
+
             ChaseState.RestartDistance();
             TurnOnHaveATarget();
             Debug.Log("The new target is " +  CurrentTarget.name);

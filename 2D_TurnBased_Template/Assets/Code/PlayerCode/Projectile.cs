@@ -21,9 +21,13 @@ public class Projectile : MonoBehaviour
         if(hitinfo.collider != null)
         {
             if (hitinfo)
-            {
-                Debug.Log("eneny hit!");
-                hitinfo.collider.GetComponent<BaseEnemy>().TakeDamage(RangeDamage);
+            {  
+                if (hitinfo.collider.gameObject.GetComponent<BaseCharacter>() != null)
+                    hitinfo.collider.GetComponent<BaseCharacter>().TakeDamage(RangeDamage);
+                else if (hitinfo.collider.gameObject.GetComponent<BaseEnemy>() != null)
+                    hitinfo.collider.GetComponent<BaseEnemy>().TakeDamage(RangeDamage);
+                else if (hitinfo.collider.gameObject.name == "Barricade")
+                    BarricadeController.Instance.BarricadeTakesDamage(RangeDamage);
             }
             DestroyProjectile();
         }
