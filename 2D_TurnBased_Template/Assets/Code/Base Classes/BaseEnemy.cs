@@ -8,6 +8,15 @@ public class BaseEnemy : MonoBehaviour
     public int EnemyDamage;
     public float EnemyDamageRate;
 
+    [SerializeField]
+    public enum TypeOfEnemy
+    {
+        Swordsman, 
+        Archer
+    }
+
+    public TypeOfEnemy EnemyType;
+
     public void TakeDamage(int  damage)
     {
         EnemyHealth -= damage;

@@ -2,11 +2,8 @@ using UnityEngine;
 
 public class EnemySwordsman : BaseEnemy
 {
-    private void OnCollisionStay2D(Collision2D collision)
+    private void Start()
     {
-        if (collision.collider.CompareTag("Barricade"))
-        {
-           
-        }
+         EnemyType = TypeOfEnemy.Swordsman;
     }
 }

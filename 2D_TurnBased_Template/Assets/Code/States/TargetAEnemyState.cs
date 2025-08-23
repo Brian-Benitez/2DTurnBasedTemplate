@@ -9,14 +9,17 @@ public class TargetAEnemyState : State
     public bool HaveATarget = false;
     [Header("Current obj target")]
     public GameObject CurrentTarget;
+
     int _newEnemyIndex = 0;
+    BaseEnemy BaseEnemyRef;
 
     private void Start()
     {
         ChaseState = GetComponent<ChaseState>();
+        BaseEnemyRef = GetComponent<BaseEnemy>();
     }
 
-    public override State RunCurrentState()
+    public override State RunCurrentState()//Note: we made a enum to tell us what type of enemy it is.. Now we can  write code checking on type of enemy.
     {   
         if(HaveATarget)
             return ChaseState;
@@ -29,7 +32,10 @@ public class TargetAEnemyState : State
             }
             else//if not pick a good guy to go to
             {
-                CurrentTarget = NPCController.Instance.GoodGuysList[NPCController.Instance.PickGoodGuyAtRandom()];
+                if (BaseEnemyRef.EnemyType == BaseEnemy.TypeOfEnemy.Archer)
+                    Debug.Log("do something else");
+                else
+                    CurrentTarget = NPCController.Instance.GoodGuysList[NPCController.Instance.PickGoodGuyAtRandom()];
             }
             ChaseState.RestartDistance();
             TurnOnHaveATarget();
@@ -40,10 +46,6 @@ public class TargetAEnemyState : State
 
     public void TurnOnHaveATarget() => HaveATarget = true;
     public void TurnOffBoolHaveATarget () => HaveATarget = false;
-    private int PickAEnemyIndex()
-    {
-       return Random.Range(0, 10);
-    }
 
     private void PickAttackPointOnBarricade()
     {
