@@ -19,10 +19,11 @@ public class TargetAEnemyState : State
         BaseEnemyRef = GetComponent<BaseEnemy>();
     }
 
-    public override State RunCurrentState()//Note: we made a enum to tell us what type of enemy it is.. Now we can  write code checking on type of enemy.
+    public override State RunCurrentState()
     {   
         if(HaveATarget)
             return ChaseState;
+
         else if(!HaveATarget)
         {
             if (BarricadeController.Instance.BarricadeHealth > 0)

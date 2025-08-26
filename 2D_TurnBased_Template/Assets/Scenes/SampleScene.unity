@@ -2256,8 +2256,9 @@ GameObject:
   - component: {fileID: 1108307924}
   - component: {fileID: 1108307923}
   - component: {fileID: 1108307922}
-  - component: {fileID: 1108307921}
-  - component: {fileID: 1108307920}
+  - component: {fileID: 1108307930}
+  - component: {fileID: 1108307929}
+  - component: {fileID: 1108307928}
   m_Layer: 0
   m_Name: EnemyArcher
   m_TagString: Untagged
@@ -2265,34 +2266,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1108307920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1108307919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c721708da2aed14b8332e7b11d58c34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MovementSpeed: 0
-  DistanceFromTarget: 0
---- !u!114 &1108307921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1108307919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57a1f977a11c95f49bfee78464fdc95c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HaveATarget: 0
-  CurrentTarget: {fileID: 0}
 --- !u!114 &1108307922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2309,7 +2282,7 @@ MonoBehaviour:
   EnemySpeed: 5
   EnemyDamage: 1
   EnemyDamageRate: 3
-  EnemyType: 0
+  EnemyType: 1
 --- !u!50 &1108307923
 Rigidbody2D:
   serializedVersion: 5
@@ -2442,6 +2415,44 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1108307928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108307919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 009a99ee810baec41913d668d1d614fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1108307929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108307919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38d76537c708c204590482b5f8944fa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1108307930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108307919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a96ddac501ee94ebc3d4c1c9afb5c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HasRangeTarget: 0
+  CurrentRangeTarget: {fileID: 0}
 --- !u!1 &1123884380
 GameObject:
   m_ObjectHideFlags: 0
