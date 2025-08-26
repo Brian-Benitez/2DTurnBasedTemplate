@@ -25,6 +25,8 @@ public class TargetARangeEnemyState : State
             else
                 CurrentRangeTarget = NPCController.Instance.GoodGuysList[NPCController.Instance.PickGoodGuyAtRandom()];
 
+            Debug.Log("current enemy is " + CurrentRangeTarget.name);
+
             TurnOnHasRangeTarget(); 
         }
             return this;
