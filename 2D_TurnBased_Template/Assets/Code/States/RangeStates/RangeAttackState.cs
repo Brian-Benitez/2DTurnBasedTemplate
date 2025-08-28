@@ -9,8 +9,10 @@ public class RangeAttackState : State
     public Transform ShotPoint;
 
     public bool CanRangeAttackAgain;
+    public bool ChangeToNewState = false;
 
     TargetARangeEnemyState TargetARangeEnemyState;
+    GetWithinRangeAttackState GetWithinRangeAttackState;
 
     private float _maxTimeBtwAttacks;
 
@@ -18,6 +20,7 @@ public class RangeAttackState : State
     {
         _maxTimeBtwAttacks = TimeBtwAttack;
         TargetARangeEnemyState = GetComponentInParent<TargetARangeEnemyState>();    
+        GetWithinRangeAttackState = GetComponentInParent<GetWithinRangeAttackState>();
     }
 
 
@@ -28,7 +31,7 @@ public class RangeAttackState : State
         float rotz = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotz + Offset);
 
-        if (CanRangeAttackAgain)
+        if (CanRangeAttackAgain && !ChangeToNewState)
         {
             Instantiate(Projectile, ShotPoint.position, transform.rotation);
             RestartTimerForRangeAttacks();
@@ -51,6 +54,28 @@ public class RangeAttackState : State
 
     public override State RunCurrentState()
     {
+        if(ChangeToNewState)
+        {
+            TargetARangeEnemyState.TurnOffHasRangeTarget();
+            GetWithinRangeAttackState.RestartDisanceFromTarget();
+            Debug.Log("here");
+            ChangeToNewState = false;
+            return TargetARangeEnemyState;
+        }
+            
+        if (BarricadeController.Instance.BarricadeEnabled == false && BarricadeController.Instance.CanAttackBarricade == false)
+        {
+            BarricadeController.Instance.CanAttackBarricade = true;//we need to make this false again somewhere
+            TargetARangeEnemyState.TurnOffHasRangeTarget();
+            ChangeToNewState = true;
+            Debug.Log("barriacde cannot be hit anymore");
+        }
+        else if (TargetARangeEnemyState.CurrentRangeTarget.name == "Player")
+        {
+            if (TargetARangeEnemyState.CurrentRangeTarget.GetComponent<BaseCharacter>().IsCharacterDead == true)
+                TargetARangeEnemyState.TurnOffHasRangeTarget();
+            ChangeToNewState = true;
+        }
         return this;
     }
 }

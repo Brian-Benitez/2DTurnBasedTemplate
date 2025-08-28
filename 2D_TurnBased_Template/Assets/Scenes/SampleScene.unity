@@ -1002,7 +1002,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &549116296
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2429,8 +2429,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WithinRangeAttack: 0
-  StoppingDistanceForRangeAttack: 15
-  DistanceFromTarget: 20
+  StoppingDistanceForRangeAttack: 10
+  DistanceFromTarget: 15
 --- !u!114 &1108307930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3856,6 +3856,7 @@ MonoBehaviour:
   Projectile: {fileID: 3803819813536235244, guid: 9066830de6b4f134ab83d8b927f0a184, type: 3}
   ShotPoint: {fileID: 1874992529}
   CanRangeAttackAgain: 0
+  ChangeToNewState: 0
 --- !u!1 &1744839025
 GameObject:
   m_ObjectHideFlags: 0
@@ -4104,7 +4105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ac051be44d06ae4f83ba790e69561bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BarricadeHealth: 100
+  BarricadeHealth: 2
   BarricadeGameObject: {fileID: 1407089243}
   BarricadeEnabled: 1
   CanAttackBarricade: 0
