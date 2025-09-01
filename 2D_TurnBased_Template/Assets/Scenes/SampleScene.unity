@@ -2429,8 +2429,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WithinRangeAttack: 0
-  StoppingDistanceForRangeAttack: 10
-  DistanceFromTarget: 15
+  StoppingDistanceForRangeAttack: 7
+  DistanceFromTarget: 0
 --- !u!114 &1108307930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3852,11 +3852,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Offset: 90
-  TimeBtwAttack: 1
+  TimeBtwAttack: 2
   Projectile: {fileID: 3803819813536235244, guid: 9066830de6b4f134ab83d8b927f0a184, type: 3}
   ShotPoint: {fileID: 1874992529}
   CanRangeAttackAgain: 0
-  ChangeToNewState: 0
+  IsAttacking: 0
+  IsStillWithinRange: 0
 --- !u!1 &1744839025
 GameObject:
   m_ObjectHideFlags: 0

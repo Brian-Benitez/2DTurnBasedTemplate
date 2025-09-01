@@ -1,3 +1,4 @@
+using System.Data.Common;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -28,11 +29,17 @@ public class Projectile : MonoBehaviour
                     hitinfo.collider.GetComponent<BaseEnemy>().TakeDamage(RangeDamage);
                 else if (hitinfo.collider.gameObject.name == "Barricade")
                     BarricadeController.Instance.BarricadeTakesDamage(RangeDamage);
+                //if hit nothing, then check this bool and do something else!
             }
             DestroyProjectile();
         }
-        
-        transform.Translate(Vector2.up * SpeedOfProjectile * Time.deltaTime);
+        else
+        {
+            Debug.Log("U hit nothinmg");
+            DestroyProjectile();
+        }
+
+            transform.Translate(Vector2.up * SpeedOfProjectile * Time.deltaTime);
     }
 
     void DestroyProjectile()

@@ -9,7 +9,8 @@ public class RangeAttackState : State
     public Transform ShotPoint;
 
     public bool CanRangeAttackAgain;
-    public bool ChangeToNewState = false;
+    public bool IsAttacking = false;
+    public bool IsStillWithinRange = false;
 
     TargetARangeEnemyState TargetARangeEnemyState;
     GetWithinRangeAttackState GetWithinRangeAttackState;
@@ -31,22 +32,28 @@ public class RangeAttackState : State
         float rotz = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotz + Offset);
 
-        if (CanRangeAttackAgain && !ChangeToNewState)
+        if (GetWithinRangeAttackState.DistanceFromTarget < GetWithinRangeAttackState.StoppingDistanceForRangeAttack)
         {
-            Instantiate(Projectile, ShotPoint.position, transform.rotation);
-            RestartTimerForRangeAttacks();
-        }
+            IsStillWithinRange = true;
+            if (CanRangeAttackAgain)//check if the distance hits the minium then attack here
+            {
+                Instantiate(Projectile, ShotPoint.position, transform.rotation);
+                RestartTimerForRangeAttacks();
+            }
 
-        if (TimeBtwAttack <= 0)
-        {
-            CanRangeAttackAgain = true;
-            return;
+            if (TimeBtwAttack <= 0)
+            {
+                CanRangeAttackAgain = true;
+                return;
+            }
+            else
+            {
+                TimeBtwAttack -= Time.deltaTime;
+                CanRangeAttackAgain = false;
+            }
         }
         else
-        {
-            TimeBtwAttack -= Time.deltaTime;
-            CanRangeAttackAgain = false;
-        }
+            IsStillWithinRange = false;
 
     }
 
@@ -54,28 +61,39 @@ public class RangeAttackState : State
 
     public override State RunCurrentState()
     {
-        if(ChangeToNewState)
+        if (!IsStillWithinRange)
         {
+            Debug.Log("get back ti within range!");
+            return GetWithinRangeAttackState;
+        }
+        if (!IsAttacking)
+        {
+            GetWithinRangeAttackState.TurnOffWithinRangeBool();
             TargetARangeEnemyState.TurnOffHasRangeTarget();
-            GetWithinRangeAttackState.RestartDisanceFromTarget();
-            Debug.Log("here");
-            ChangeToNewState = false;
+            //GetWithinRangeAttackState.RestartDisanceFromTarget();
             return TargetARangeEnemyState;
         }
-            
+
+
         if (BarricadeController.Instance.BarricadeEnabled == false && BarricadeController.Instance.CanAttackBarricade == false)
         {
             BarricadeController.Instance.CanAttackBarricade = true;//we need to make this false again somewhere
             TargetARangeEnemyState.TurnOffHasRangeTarget();
-            ChangeToNewState = true;
-            Debug.Log("barriacde cannot be hit anymore");
+            IsAttacking = false;
+            Debug.Log("barriacde cannot be hit anymore and " + IsAttacking);
         }
         else if (TargetARangeEnemyState.CurrentRangeTarget.name == "Player")
         {
             if (TargetARangeEnemyState.CurrentRangeTarget.GetComponent<BaseCharacter>().IsCharacterDead == true)
                 TargetARangeEnemyState.TurnOffHasRangeTarget();
-            ChangeToNewState = true;
+            IsAttacking = false;
         }
-        return this;
+        else
+        {
+            IsAttacking = true;
+            Debug.Log("still attaking "+ IsAttacking);
+        }
+
+            return this;
     }
 }

@@ -39,7 +39,7 @@ public class BarricadeController : MonoBehaviour
 
     private void CheckBarricadeHealth()
     {
-        if(BarricadeHealth < 0)
+        if(BarricadeHealth <= 0)
         {
             BarricadeGameObject.SetActive(false);
             BarricadeEnabled = false;
