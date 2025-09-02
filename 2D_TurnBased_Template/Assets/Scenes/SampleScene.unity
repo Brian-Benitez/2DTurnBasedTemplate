@@ -2429,7 +2429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WithinRangeAttack: 0
-  StoppingDistanceForRangeAttack: 7
+  StoppingDistanceForRangeAttack: 8
   DistanceFromTarget: 0
 --- !u!114 &1108307930
 MonoBehaviour:

@@ -64,6 +64,7 @@ public class RangeAttackState : State
         if (!IsStillWithinRange)
         {
             Debug.Log("get back ti within range!");
+            GetWithinRangeAttackState.TurnOffWithinRangeBool();
             return GetWithinRangeAttackState;
         }
         if (!IsAttacking)
