@@ -101,8 +101,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpeedOfProjectile: 10
-  LifeTimeOfProjectile: 2
-  DistanceOfProjectile: 5
+  LifeTimeOfProjectile: 5
+  DistanceOfProjectile: 2
   RangeDamage: 1
   Enemy:
     serializedVersion: 2

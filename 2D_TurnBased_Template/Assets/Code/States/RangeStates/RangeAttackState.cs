@@ -28,9 +28,10 @@ public class RangeAttackState : State
     private void Update()
     {
         //This deals with rotating weapon below
-        Vector3 difference = TargetARangeEnemyState.transform.position - transform.position;
-        float rotz = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotz + Offset);
+
+        Vector3 lookat = transform.InverseTransformPoint(TargetARangeEnemyState.CurrentRangeTarget.transform.position);
+        float angle = Mathf.Atan2(lookat.y, lookat.x) * Mathf.Rad2Deg - 90;
+        transform.Rotate(0, 0, angle);
 
         if (GetWithinRangeAttackState.DistanceFromTarget < GetWithinRangeAttackState.StoppingDistanceForRangeAttack)
         {
