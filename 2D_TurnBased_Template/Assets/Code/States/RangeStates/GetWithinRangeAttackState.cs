@@ -39,7 +39,6 @@ public class GetWithinRangeAttackState : State
         }
         else
         {
-            Debug.Log("we are within attacking range");
             TurnOnWithinRangeBool();
         }
             

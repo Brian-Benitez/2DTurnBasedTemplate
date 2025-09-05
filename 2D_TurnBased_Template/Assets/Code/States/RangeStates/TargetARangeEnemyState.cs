@@ -17,7 +17,6 @@ public class TargetARangeEnemyState : State
     }
     public override State RunCurrentState()
     {
-        Debug.Log("hiiiiii");
         if(HasRangeTarget)
             return GetWithinRangeAttackState;
         else
@@ -27,9 +26,6 @@ public class TargetARangeEnemyState : State
             else
                 CurrentRangeTarget = NPCController.Instance.GoodGuysList[NPCController.Instance.PickGoodGuyAtRandom()];
 
-            Debug.Log("current enemy is " + CurrentRangeTarget.name);
-
-            //GetWithinRangeAttackState.RestartDisanceFromTarget();
             TurnOnHasRangeTarget(); 
         }
             return this;

@@ -1,5 +1,6 @@
 using System.Data.Common;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Projectile : MonoBehaviour
 {
@@ -24,11 +25,21 @@ public class Projectile : MonoBehaviour
             if (hitinfo)
             {  
                 if (hitinfo.collider.gameObject.GetComponent<BaseCharacter>() != null)
+                {
+                    Debug.Log("hahah");
                     hitinfo.collider.GetComponent<BaseCharacter>().TakeDamage(RangeDamage);
+                }
                 else if (hitinfo.collider.gameObject.GetComponent<BaseEnemy>() != null)
+                {
+                    Debug.Log("loook");
                     hitinfo.collider.GetComponent<BaseEnemy>().TakeDamage(RangeDamage);
-                else if (hitinfo.collider.gameObject.name == "Barricade")
+                }
+                else if (hitinfo.collider.gameObject.CompareTag("Barricade"))
+                {
+                    Debug.Log("u hit barricade");
                     BarricadeController.Instance.BarricadeTakesDamage(RangeDamage);
+                }
+                    
                 //if hit nothing, then check this bool and do something else!
             }
             DestroyProjectile();

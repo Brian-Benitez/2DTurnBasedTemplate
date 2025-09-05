@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class RangeAttackState : State
 {
-    public float Offset;
     public float TimeBtwAttack;
 
     public GameObject Projectile;
@@ -97,5 +96,11 @@ public class RangeAttackState : State
         }
 
             return this;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(ShotPoint.position, 8f);
     }
 }
