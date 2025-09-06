@@ -2259,7 +2259,7 @@ GameObject:
   - component: {fileID: 1108307930}
   - component: {fileID: 1108307929}
   - component: {fileID: 1108307931}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EnemyArcher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2542,6 +2542,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1131129219}
   - component: {fileID: 1131129220}
+  - component: {fileID: 1131129221}
   m_Layer: 0
   m_Name: MeleeTest
   m_TagString: Untagged
@@ -2586,6 +2587,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   CanMeleeAttackAgain: 0
+--- !u!114 &1131129221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1131129218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f20f220caf3f54f92edde3f9519edd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1211633314
 GameObject:
   m_ObjectHideFlags: 0
@@ -3123,13 +3136,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1327667275}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.29, y: 0.42547, z: 0}
   m_LocalScale: {x: 0.20000002, y: 0.5, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1131129219}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1327667277
 SpriteRenderer:
   m_ObjectHideFlags: 0

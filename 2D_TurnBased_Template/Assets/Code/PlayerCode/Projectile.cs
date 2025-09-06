@@ -26,7 +26,6 @@ public class Projectile : MonoBehaviour
             {  
                 if (hitinfo.collider.gameObject.GetComponent<BaseCharacter>() != null)
                 {
-                    Debug.Log("hahah");
                     hitinfo.collider.GetComponent<BaseCharacter>().TakeDamage(RangeDamage);
                 }
                 else if (hitinfo.collider.gameObject.GetComponent<BaseEnemy>() != null)
