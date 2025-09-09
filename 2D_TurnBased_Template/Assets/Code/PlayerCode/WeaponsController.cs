@@ -6,19 +6,35 @@ public class WeaponsController : MonoBehaviour
     public GameObject MeleeWeaponPrefab;
     [Header("Range prefab")]
     public GameObject RangeWeaponPrefab;
+    [Header("Booleans")]
+    public bool HasWeaponActive = false;
 
-    private void Start() => SwitchToMelee();
+    ShieldController _shieldController;
+
+    private void Start()
+    {
+        _shieldController = GetComponent<ShieldController>();   
+        SwitchToMelee();
+    }
 
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Alpha1))
+        if (HasWeaponActive == false)
             SwitchToMelee();
-        else if(Input.GetKeyUp(KeyCode.Alpha2))
-            SwitchToRange();
+        if (_shieldController.IsShieldActive)
+            DisableAllWeapons();
+        else
+        {
+            if (Input.GetKeyUp(KeyCode.Alpha1))
+                SwitchToMelee();
+            else if (Input.GetKeyUp(KeyCode.Alpha2))
+                SwitchToRange();
+        }
     }
 
     void SwitchToMelee()
     {
+        HasWeaponActive = true;
         MeleeWeaponPrefab.SetActive(true);
         RangeWeaponPrefab.SetActive(false);
         Debug.Log("switched to melee");
@@ -26,12 +42,14 @@ public class WeaponsController : MonoBehaviour
 
     void SwitchToRange()
     {
+        HasWeaponActive = true;
         RangeWeaponPrefab.SetActive(true);
         MeleeWeaponPrefab.SetActive(false);
         Debug.Log("switch to range");
     }
     void DisableAllWeapons()
     {
+        HasWeaponActive = false;
         RangeWeaponPrefab.SetActive(false);
         MeleeWeaponPrefab.SetActive(false);
     }
