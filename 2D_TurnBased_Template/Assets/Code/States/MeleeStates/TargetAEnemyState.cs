@@ -10,13 +10,9 @@ public class TargetAEnemyState : State
     [Header("Current obj target")]
     public GameObject CurrentTarget;
 
-    int _newEnemyIndex = 0;
-    BaseEnemy BaseEnemyRef;
-
     private void Start()
     {
         ChaseState = GetComponent<ChaseState>();
-        BaseEnemyRef = GetComponent<BaseEnemy>();
     }
 
     public override State RunCurrentState()
@@ -26,14 +22,7 @@ public class TargetAEnemyState : State
 
         else if(!HaveATarget)
         {
-            if (BarricadeController.Instance.BarricadeHealth > 0)
-            {
-                PickAttackPointOnBarricade();
-                CurrentTarget = BarricadeController.Instance.AttackPointsLocation[_newEnemyIndex];
-            }
-            else
-                CurrentTarget = NPCController.Instance.GoodGuysList[NPCController.Instance.PickGoodGuyAtRandom()];
-
+            CurrentTarget = NPCController.Instance.GoodGuysList[NPCController.Instance.PickGoodGuyAtRandom()];
             ChaseState.RestartDistance();
             TurnOnHaveATarget();
             Debug.Log("The new target is " +  CurrentTarget.name);
@@ -43,12 +32,5 @@ public class TargetAEnemyState : State
 
     public void TurnOnHaveATarget() => HaveATarget = true;
     public void TurnOffBoolHaveATarget () => HaveATarget = false;
-
-    private void PickAttackPointOnBarricade()
-    {
-        _newEnemyIndex = 0;
-        Debug.Log("checek " + BarricadeController.Instance.AttackPointsLocation.Count);
-       _newEnemyIndex =  Random.Range(0, BarricadeController.Instance.AttackPointsLocation.Count);
-    }
 
 }

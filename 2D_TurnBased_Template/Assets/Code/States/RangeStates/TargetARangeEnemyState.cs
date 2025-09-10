@@ -21,11 +21,7 @@ public class TargetARangeEnemyState : State
             return GetWithinRangeAttackState;
         else
         {
-            if (BarricadeController.Instance.BarricadeHealth > 0)
-                CurrentRangeTarget = BarricadeController.Instance.BarricadeGameObject;
-            else
-                CurrentRangeTarget = NPCController.Instance.GoodGuysList[NPCController.Instance.PickGoodGuyAtRandom()];
-
+            CurrentRangeTarget = NPCController.Instance.GoodGuysList[NPCController.Instance.PickGoodGuyAtRandom()];
             TurnOnHasRangeTarget(); 
         }
             return this;

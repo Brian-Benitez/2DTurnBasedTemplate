@@ -106,4 +106,4 @@ MonoBehaviour:
   RangeDamage: 1
   Enemy:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 448

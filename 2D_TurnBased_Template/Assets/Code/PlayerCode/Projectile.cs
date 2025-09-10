@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
         if(hitinfo.collider != null)
         {
             if (hitinfo)
-            {  
+            {
                 if (hitinfo.collider.gameObject.GetComponent<BaseCharacter>() != null)
                 {
                     hitinfo.collider.GetComponent<BaseCharacter>().TakeDamage(RangeDamage);
@@ -38,8 +38,10 @@ public class Projectile : MonoBehaviour
                     Debug.Log("u hit barricade");
                     BarricadeController.Instance.BarricadeTakesDamage(RangeDamage);
                 }
-                    
-                //if hit nothing, then check this bool and do something else!
+                else if (hitinfo.collider.gameObject.CompareTag("Shield"))
+                {
+                    Debug.Log("hit sheild!");
+                }
             }
             DestroyProjectile();
         }
