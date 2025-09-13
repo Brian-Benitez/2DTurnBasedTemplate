@@ -584,10 +584,10 @@ MonoBehaviour:
   WithinRange: 0
   WhatisHittable:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 64
   BarricadeLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   BarriacdeLayerMaskIndex: 7
   StoppingDistanceFromTarget: 1.6
-  ChangeToNewState: 0
+  AttackMissedPlayer: 0

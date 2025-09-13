@@ -25,7 +25,6 @@ public class TargetAEnemyState : State
             CurrentTarget = NPCController.Instance.GoodGuysList[NPCController.Instance.PickGoodGuyAtRandom()];
             ChaseState.RestartDistance();
             TurnOnHaveATarget();
-            Debug.Log("The new target is " +  CurrentTarget.name);
         }
         return this;
     }

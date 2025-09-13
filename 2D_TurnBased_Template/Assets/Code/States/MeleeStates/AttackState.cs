@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AttackState : State
+public class AttackState : State//rename this to EnemyAttackState
 {
     [Header("Melee pos")]
     public Transform MeleePos;
@@ -24,7 +24,7 @@ public class AttackState : State
     public float StoppingDistanceFromTarget = 1.6f;
 
 
-    public bool ChangeToNewState = false;
+    public bool AttackMissedPlayer = false;
     private EnemySwordsman EnemySwordsmanRef;
     //States ref here
     ChaseState ChaseState;
@@ -50,14 +50,14 @@ public class AttackState : State
             if (enemiesToDamges.Length == 0)
             {
                 Debug.Log("i hit no one:(");
-                ChangeToNewState = true;
+                AttackMissedPlayer = true;
             }
             else
-                ChangeToNewState = false;
+                AttackMissedPlayer = false;
 
                 for (int i = 0; i < enemiesToDamges.Length; i++)
                 {
-                    if (enemiesToDamges[i].gameObject.layer == BarriacdeLayerMaskIndex)
+                    if (enemiesToDamges[i].gameObject.layer == BarriacdeLayerMaskIndex)//take this out
                     {
                         BarricadeController.Instance.BarricadeTakesDamage(EnemySwordsmanRef.EnemyDamage);
                     }
@@ -82,38 +82,32 @@ public class AttackState : State
         }
     }
 
-    void RestartTimerForAttacks() => TimeBtwAttack = _maxTimeBtwAttacks;
-
-    public void IsWithinAttackingRange() => WithinRange = true;
-    public void NotWithinAttackingRange() => WithinRange = false;
-
     public override State RunCurrentState()//this is ther issue, this should not carry on while players are still alive
     {
 
-        if(ChangeToNewState == true)
+        if(AttackMissedPlayer == true)
         {
-            TargetAEnemyState.HaveATarget = false;
-            return TargetAEnemyState;
+            ChaseState.RestartDistance();
+            AttackMissedPlayer = false;
+            return ChaseState;
         }
         if(TargetAEnemyState.HaveATarget == false)
         {
             return TargetAEnemyState;
         }
 
-
-        if (BarricadeController.Instance.BarricadeEnabled == false && BarricadeController.Instance.CanAttackBarricade == false)
-        {
-            BarricadeController.Instance.CanAttackBarricade = true;//get it ready for later
-            TargetAEnemyState.TurnOffBoolHaveATarget();
-            Debug.Log("fffuucckk");
-        }
-        else if(TargetAEnemyState.CurrentTarget.name == "Player")
+        if(TargetAEnemyState.CurrentTarget.name == "Player")
         {
             if(TargetAEnemyState.CurrentTarget.GetComponent<BaseCharacter>().IsCharacterDead == true)
                 TargetAEnemyState.TurnOffBoolHaveATarget();
         }
         return this;
     }
+
+    void RestartTimerForAttacks() => TimeBtwAttack = _maxTimeBtwAttacks;
+    public void IsWithinAttackingRange() => WithinRange = true;
+    public void NotWithinAttackingRange() => WithinRange = false;
+
 
     //--------------------------------------------------------------------------------------------------------------------------->
     private void OnDrawGizmosSelected()
