@@ -96,9 +96,9 @@ public class AttackState : State//rename this to EnemyAttackState
             return TargetAEnemyState;
         }
 
-        if(TargetAEnemyState.CurrentTarget.name == "Player")
+        if(TargetAEnemyState.CurrentTargetPos.name == "Player")
         {
-            if(TargetAEnemyState.CurrentTarget.GetComponent<BaseCharacter>().IsCharacterDead == true)
+            if(TargetAEnemyState.CurrentTargetPos.GetComponent<BaseCharacter>().IsCharacterDead == true)
                 TargetAEnemyState.TurnOffBoolHaveATarget();
         }
         return this;

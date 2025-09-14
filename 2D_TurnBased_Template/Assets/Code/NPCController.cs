@@ -6,7 +6,7 @@ public class NPCController : MonoBehaviour
 {
     public static NPCController Instance { get; private set; }
 
-    public List<GameObject> GoodGuysList;
+    public GameObject Player;
     public int CurrentGoodGuyIndex = 0;
 
     private void Awake()
@@ -15,19 +15,4 @@ public class NPCController : MonoBehaviour
             Instance = this;
     }
 
-    public int PickGoodGuyAtRandom()
-    {
-        int index = 0;
-        CurrentGoodGuyIndex = 0;
-        index = Random.Range(0, GoodGuysList.Count);
-        CurrentGoodGuyIndex = index;
-        return index;
-    }
-    
-    public bool StillHasGoodGuys()
-    {
-        if (GoodGuysList.Count > 0)
-            return true;
-        else return false;
-    }
 }

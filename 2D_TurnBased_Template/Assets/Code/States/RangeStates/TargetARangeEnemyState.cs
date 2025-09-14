@@ -21,7 +21,7 @@ public class TargetARangeEnemyState : State
             return GetWithinRangeAttackState;
         else
         {
-            CurrentRangeTarget = NPCController.Instance.GoodGuysList[NPCController.Instance.PickGoodGuyAtRandom()];
+            CurrentRangeTarget = NPCController.Instance.Player;
             TurnOnHasRangeTarget(); 
         }
             return this;

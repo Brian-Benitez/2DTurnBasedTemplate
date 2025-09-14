@@ -14,7 +14,7 @@ public class ChaseState : State
     private void Start()
     {
         TargetAEnemyState = GetComponentInParent<TargetAEnemyState>();
-        AttackState = GetComponent<AttackState>();  
+        AttackState = GetComponentInChildren<AttackState>();  
     }
 
     private void Update()
@@ -28,9 +28,9 @@ public class ChaseState : State
             return;
         if(TargetAEnemyState.HaveATarget)
         {
-            DistanceFromTarget = Vector2.Distance(transform.position, TargetAEnemyState.CurrentTarget.transform.position);
-            Vector2 direction = TargetAEnemyState.CurrentTarget.transform.position - transform.position;
-            transform.position = Vector2.MoveTowards(this.transform.position, TargetAEnemyState.CurrentTarget.transform.position, MovementSpeed * Time.deltaTime);
+            DistanceFromTarget = Vector2.Distance(transform.position, TargetAEnemyState.CurrentTargetPos.transform.position);
+            Vector2 direction = TargetAEnemyState.CurrentTargetPos.transform.position - transform.position;
+            transform.position = Vector2.MoveTowards(this.transform.position, TargetAEnemyState.CurrentTargetPos.transform.position, MovementSpeed * Time.deltaTime);
         }
 
     }

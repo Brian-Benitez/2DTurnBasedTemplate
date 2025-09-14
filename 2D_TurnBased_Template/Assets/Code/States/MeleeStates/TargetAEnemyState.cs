@@ -1,4 +1,5 @@
-using System.Runtime.InteropServices.WindowsRuntime;
+
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetAEnemyState : State
@@ -8,7 +9,7 @@ public class TargetAEnemyState : State
     [Header("Bool")]
     public bool HaveATarget = false;
     [Header("Current obj target")]
-    public GameObject CurrentTarget;
+    public GameObject CurrentTargetPos;
 
     private void Start()
     {
@@ -22,13 +23,12 @@ public class TargetAEnemyState : State
 
         else if(!HaveATarget)
         {
-            CurrentTarget = NPCController.Instance.GoodGuysList[NPCController.Instance.PickGoodGuyAtRandom()];
+            CurrentTargetPos = NPCController.Instance.Player;
             ChaseState.RestartDistance();
             TurnOnHaveATarget();
         }
         return this;
     }
-
     public void TurnOnHaveATarget() => HaveATarget = true;
     public void TurnOffBoolHaveATarget () => HaveATarget = false;
 
