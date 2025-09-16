@@ -15,27 +15,17 @@ public class AttackState : State//rename this to EnemyAttackState
 
     [Header("Layermasks for what can be hit")]
     public LayerMask WhatisHittable;
-    public LayerMask BarricadeLayerMask;
-
-    [Header("Layer Mask Indexs")]
-    public int BarriacdeLayerMaskIndex = 7;
-
-    [Header("Stopping distance for melee")]
-    public float StoppingDistanceFromTarget = 1.6f;
-
 
     public bool AttackMissedPlayer = false;
     private EnemySwordsman EnemySwordsmanRef;
     //States ref here
     ChaseState ChaseState;
-    TargetAEnemyState TargetAEnemyState;
 
 
     private float _maxTimeBtwAttacks;
 
     private void Start()
     {
-        TargetAEnemyState = GetComponentInParent<TargetAEnemyState>();
         _maxTimeBtwAttacks = TimeBtwAttack;
         EnemySwordsmanRef = gameObject.GetComponentInParent<EnemySwordsman>();
         ChaseState = GetComponentInParent<ChaseState>();
@@ -55,18 +45,12 @@ public class AttackState : State//rename this to EnemyAttackState
             else
                 AttackMissedPlayer = false;
 
-                for (int i = 0; i < enemiesToDamges.Length; i++)
-                {
-                    if (enemiesToDamges[i].gameObject.layer == BarriacdeLayerMaskIndex)//take this out
-                    {
-                        BarricadeController.Instance.BarricadeTakesDamage(EnemySwordsmanRef.EnemyDamage);
-                    }
-                    else
-                    {
-                        enemiesToDamges[i].GetComponent<BaseCharacter>().TakeDamage(EnemySwordsmanRef.EnemyDamage);
-                        Debug.Log("Enemy hit " + enemiesToDamges[i].gameObject.name + "for " + EnemySwordsmanRef.EnemyDamage);
-                    }
-                }
+            for (int i = 0; i < enemiesToDamges.Length; i++)
+            {
+                enemiesToDamges[i].GetComponent<BaseCharacter>().TakeDamage(EnemySwordsmanRef.EnemyDamage);
+                Debug.Log("Enemy hit " + enemiesToDamges[i].gameObject.name + "for " + EnemySwordsmanRef.EnemyDamage);
+            }
+
             RestartTimerForAttacks();
         }
 
@@ -87,10 +71,11 @@ public class AttackState : State//rename this to EnemyAttackState
 
         if(AttackMissedPlayer == true)
         {
-            ChaseState.RestartDistance();
+            //ChaseState.RestartDistance();
             AttackMissedPlayer = false;
             return ChaseState;
         }
+        /*
         if(TargetAEnemyState.HaveATarget == false)
         {
             return TargetAEnemyState;
@@ -101,6 +86,7 @@ public class AttackState : State//rename this to EnemyAttackState
             if(TargetAEnemyState.CurrentTargetPos.GetComponent<BaseCharacter>().IsCharacterDead == true)
                 TargetAEnemyState.TurnOffBoolHaveATarget();
         }
+        */
         return this;
     }
 

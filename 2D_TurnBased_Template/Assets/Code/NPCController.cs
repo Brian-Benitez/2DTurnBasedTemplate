@@ -6,8 +6,7 @@ public class NPCController : MonoBehaviour
 {
     public static NPCController Instance { get; private set; }
 
-    public GameObject Player;
-    public int CurrentGoodGuyIndex = 0;
+    public Transform Player;
 
     private void Awake()
     {

@@ -23,8 +23,8 @@ public class TargetAEnemyState : State
 
         else if(!HaveATarget)
         {
-            CurrentTargetPos = NPCController.Instance.Player;
-            ChaseState.RestartDistance();
+            //CurrentTargetPos = NPCController.Instance.Player;
+            //ChaseState.RestartDistance();
             TurnOnHaveATarget();
         }
         return this;

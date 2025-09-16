@@ -5,40 +5,34 @@ public class ChaseState : State
 {
     [Header("States")]
     AttackState AttackState;
-    TargetAEnemyState TargetAEnemyState;  
 
     [Header("Floats")]
     public float MovementSpeed;
-    public float DistanceFromTarget;
+    public float MinimumDistance;
+    public float DistanceFromPlayer;
 
     private void Start()
     {
-        TargetAEnemyState = GetComponentInParent<TargetAEnemyState>();
         AttackState = GetComponentInChildren<AttackState>();  
     }
 
     private void Update()
     {
-        if (DistanceFromTarget < AttackState.StoppingDistanceFromTarget)
-            AttackState.IsWithinAttackingRange();
-        else
-            AttackState.NotWithinAttackingRange();
-
-        if (AttackState.WithinRange)//gets the enemy to stop moving
-            return;
-        if(TargetAEnemyState.HaveATarget)
+        if (Vector2.Distance(transform.position, NPCController.Instance.Player.position) > MinimumDistance)
         {
-            DistanceFromTarget = Vector2.Distance(transform.position, TargetAEnemyState.CurrentTargetPos.transform.position);
-            Vector2 direction = TargetAEnemyState.CurrentTargetPos.transform.position - transform.position;
-            transform.position = Vector2.MoveTowards(this.transform.position, TargetAEnemyState.CurrentTargetPos.transform.position, MovementSpeed * Time.deltaTime);
+            AttackState.WithinRange = false;// not yet in range
+            transform.position = Vector2.MoveTowards(transform.position, NPCController.Instance.Player.position, MovementSpeed * Time.deltaTime);
         }
-
+        else
+        {
+            DistanceFromPlayer = Vector2.Distance(transform.position, NPCController.Instance.Player.position);
+            AttackState.WithinRange = true;
+        }
     }
 
-    public void RestartDistance() => DistanceFromTarget = 6f;
     public override State RunCurrentState()
     {
-        if (TargetAEnemyState.HaveATarget && AttackState.WithinRange)
+        if (AttackState.WithinRange)
             return AttackState;
 
         return this;

@@ -21,7 +21,7 @@ public class TargetARangeEnemyState : State
             return GetWithinRangeAttackState;
         else
         {
-            CurrentRangeTarget = NPCController.Instance.Player;
+            //CurrentRangeTarget = NPCController.Instance.Player;
             TurnOnHasRangeTarget(); 
         }
             return this;
