@@ -11,7 +11,6 @@ public class RangeAttackState : State
     public bool IsAttacking = false;
     public bool IsStillWithinRange = false;
 
-    TargetARangeEnemyState TargetARangeEnemyState;
     GetWithinRangeAttackState GetWithinRangeAttackState;
 
     private float _maxTimeBtwAttacks;
@@ -19,7 +18,6 @@ public class RangeAttackState : State
     private void Start()
     {
         _maxTimeBtwAttacks = TimeBtwAttack;
-        TargetARangeEnemyState = GetComponentInParent<TargetARangeEnemyState>();    
         GetWithinRangeAttackState = GetComponentInParent<GetWithinRangeAttackState>();
     }
 
@@ -28,11 +26,11 @@ public class RangeAttackState : State
     {
         //This deals with rotating weapon below
 
-        Vector3 lookat = transform.InverseTransformPoint(TargetARangeEnemyState.CurrentRangeTarget.transform.position);
+        Vector3 lookat = transform.InverseTransformPoint(NPCController.Instance.Player.transform.position);
         float angle = Mathf.Atan2(lookat.y, lookat.x) * Mathf.Rad2Deg - 90;
         transform.Rotate(0, 0, angle);
 
-        if (GetWithinRangeAttackState.DistanceFromTarget < GetWithinRangeAttackState.StoppingDistanceForRangeAttack)
+        if (GetWithinRangeAttackState.DistanceFromTarget < GetWithinRangeAttackState.MinimunDistanceForRangeAttack)
         {
             IsStillWithinRange = true;
             if (CanRangeAttackAgain)//check if the distance hits the minium then attack here
@@ -70,16 +68,16 @@ public class RangeAttackState : State
         if (!IsAttacking)
         {
             GetWithinRangeAttackState.TurnOffWithinRangeBool();
-            TargetARangeEnemyState.TurnOffHasRangeTarget();
+            //TargetARangeEnemyState.TurnOffHasRangeTarget();
             //GetWithinRangeAttackState.RestartDisanceFromTarget();
-            return TargetARangeEnemyState;
+            //return TargetARangeEnemyState;
         }
 
-
+        /*
         if (BarricadeController.Instance.BarricadeEnabled == false && BarricadeController.Instance.CanAttackBarricade == false)
         {
             BarricadeController.Instance.CanAttackBarricade = true;//we need to make this false again somewhere
-            TargetARangeEnemyState.TurnOffHasRangeTarget();
+            //TargetARangeEnemyState.TurnOffHasRangeTarget();
             IsAttacking = false;
             Debug.Log("barriacde cannot be hit anymore and " + IsAttacking);
         }
@@ -89,6 +87,7 @@ public class RangeAttackState : State
                 TargetARangeEnemyState.TurnOffHasRangeTarget();
             IsAttacking = false;
         }
+        */
         else
         {
             IsAttacking = true;

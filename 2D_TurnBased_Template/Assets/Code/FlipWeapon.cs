@@ -8,16 +8,9 @@ public class FlipWeapon : MonoBehaviour
     public GameObject Weapon;
     public GameObject Target;
 
-    TargetARangeEnemyState TargetARangeEnemyState;
-
-    private void Start()
-    {
-        TargetARangeEnemyState = GetComponent<TargetARangeEnemyState>();
-    }
-
     void Update()
     {
-        Vector3 enemyDirectionLocal = TargetARangeEnemyState.CurrentRangeTarget.transform.InverseTransformPoint(this.transform.position);
+        Vector3 enemyDirectionLocal = NPCController.Instance.Player.transform.InverseTransformPoint(this.transform.position);
 
         if (enemyDirectionLocal.x < 0)
         {

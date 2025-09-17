@@ -5,19 +5,19 @@ public class GetWithinRangeAttackState : State
 {
     [Header("Is Within Range")]
     public bool WithinRangeAttack = false;
-    [Header("Stopping distance from enemy")]
-    public float StoppingDistanceForRangeAttack;
+    public float Speed; //change this to the enemys stats later
+    public float AttackRange;
+    [Header("Minimun distance ti attack")]
+    public float MinimunDistanceForRangeAttack;
     [Header("How far target is")]
     public float DistanceFromTarget;
     //States below
     RangeAttackState RangeAttackState;
-    TargetARangeEnemyState TargetARangeEnemyState;
     BaseEnemy BaseEnemy;
 
     private void Start()
     {
         RangeAttackState = GetComponentInChildren<RangeAttackState>();
-        TargetARangeEnemyState = GetComponent<TargetARangeEnemyState>();
         BaseEnemy = GetComponent<BaseEnemy>();
         //DistanceFromTarget = _maxDistanceFromTarget;
         
@@ -25,28 +25,19 @@ public class GetWithinRangeAttackState : State
 
     private void Update()
     {
-        DistanceFromTarget = Vector2.Distance(transform.position, TargetARangeEnemyState.CurrentRangeTarget.transform.position);//check to see if we have it yet
-
-        if (WithinRangeAttack)
-            return;
-
-        if (TargetARangeEnemyState.HasRangeTarget && DistanceFromTarget > StoppingDistanceForRangeAttack)//check this later
+        if(Vector2.Distance(transform.position, NPCController.Instance.Player.position) > AttackRange)
         {
-            Vector2 direction = TargetARangeEnemyState.CurrentRangeTarget.transform.position - transform.position;
-            transform.position = Vector2.MoveTowards(this.transform.position, TargetARangeEnemyState.CurrentRangeTarget.transform.position, BaseEnemy.EnemySpeed * Time.deltaTime);
-            Debug.Log("runnuing to target");
-            TurnOffWithinRangeBool();
+            transform.position = Vector2.MoveTowards(transform.position, NPCController.Instance.Player.position, Speed * Time.deltaTime);
         }
-        else
+
+        if (Vector2.Distance(transform.position, NPCController.Instance.Player.position) < MinimunDistanceForRangeAttack)
         {
-            TurnOnWithinRangeBool();
+            transform.position = Vector2.MoveTowards(transform.position, NPCController.Instance.Player.position, -Speed * Time.deltaTime);
         }
-            
-            
     }
     public override State RunCurrentState()
     {
-        if (WithinRangeAttack && TargetARangeEnemyState.HasRangeTarget)
+        if (WithinRangeAttack)
         {
             return RangeAttackState;
         }
@@ -54,7 +45,7 @@ public class GetWithinRangeAttackState : State
     }
     //Helper functions-------------------------------------------------------->
 
-    public void RestartDisanceFromTarget() => DistanceFromTarget = StoppingDistanceForRangeAttack;
+    public void RestartDisanceFromTarget() => DistanceFromTarget = MinimunDistanceForRangeAttack;
     public void TurnOffWithinRangeBool() => WithinRangeAttack = false;
     public void TurnOnWithinRangeBool() => WithinRangeAttack = true;
 }
