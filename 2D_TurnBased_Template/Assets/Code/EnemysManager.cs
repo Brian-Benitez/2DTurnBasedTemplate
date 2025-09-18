@@ -6,12 +6,14 @@ public class EnemysManager : MonoBehaviour
     public GameObject SwordsmanPrefab;
     public GameObject ArcherPrefab;
     public List<GameObject> EnemiesList;
+    public List<GameObject> SpawnList;
 
     public int AmountOfEnemies;
     public float spacing = 1.0f;
     private void Start()
     {
         EnemiesList = new List<GameObject>();
+        
     }
     private void Update()
     {
@@ -23,16 +25,18 @@ public class EnemysManager : MonoBehaviour
     {
         if (EnemiesList != null && EnemiesList.Count == 0)
         {
-            Vector2 spawnPosition = transform.position;//change this to a place they can spawn in
+            //Vector2 spawnPosition = transform.position;//change this to a place they can spawn in
             for (int i = 0; i < AmountOfEnemies; i++)
             {
-                Instantiate(SwordsmanPrefab, spawnPosition, Quaternion.identity);
+                Instantiate(SwordsmanPrefab, SpawnList[RandomSpawnPoint()].transform.position, Quaternion.identity);
                 EnemiesList.Add(SwordsmanPrefab);
-                spawnPosition.x += spacing;
+                //spawnPosition.x += spacing;
                 Debug.Log("instantiated " + SwordsmanPrefab.name);
             }
         }
         else
             Debug.Log("list is null:( or list is full still");
     }
+
+    int RandomSpawnPoint() => Random.Range(0, SpawnList.Count);
 }
