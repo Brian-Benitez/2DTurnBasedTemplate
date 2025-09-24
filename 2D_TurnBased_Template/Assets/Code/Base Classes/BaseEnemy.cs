@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Rendering;
 
 public class BaseEnemy : MonoBehaviour
 {
@@ -28,7 +29,10 @@ public class BaseEnemy : MonoBehaviour
     {
         if (EnemyHealth < 0)
         {
-            this.gameObject.gameObject.SetActive(false);
+            //this.gameObject.gameObject.SetActive(false);
+            Debug.Log("im dead");
+            EnemysManager.Instance.AmountOfEnemies = -1;
+            Destroy(this.gameObject);
         }
         else
             Debug.Log("has health stil");

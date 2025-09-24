@@ -3,18 +3,20 @@ using UnityEngine;
 
 public class EnemysManager : MonoBehaviour
 {
+    public static EnemysManager Instance { get; private set; }
+
     public GameObject SwordsmanPrefab;
     public GameObject ArcherPrefab;
-    public List<GameObject> EnemiesList;
     public List<GameObject> SpawnList;
 
     public int AmountOfEnemies;
-    public float spacing = 1.0f;
-    private void Start()
+    public int AmountOfEnemiesToSpawn;
+    private void Awake()
     {
-        EnemiesList = new List<GameObject>();
-        
+        if (Instance == null)
+            Instance = this;
     }
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.V))
@@ -23,14 +25,14 @@ public class EnemysManager : MonoBehaviour
     }
     void SpawnEnemies()
     {
-        if (EnemiesList != null && EnemiesList.Count == 0)
+        
+        if (AmountOfEnemies == 0)
         {
             //Vector2 spawnPosition = transform.position;//change this to a place they can spawn in
-            for (int i = 0; i < AmountOfEnemies; i++)
+            for (int i = 0; i < AmountOfEnemiesToSpawn; i++)
             {
                 Instantiate(SwordsmanPrefab, SpawnList[RandomSpawnPoint()].transform.position, Quaternion.identity);
-                EnemiesList.Add(SwordsmanPrefab);
-                //spawnPosition.x += spacing;
+                AmountOfEnemies++;
                 Debug.Log("instantiated " + SwordsmanPrefab.name);
             }
         }
