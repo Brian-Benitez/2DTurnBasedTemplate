@@ -5,6 +5,12 @@ public class PlayerMeleeAttack : MonoBehaviour
     [Header("Transforms")]
     public Transform AttackPos;
 
+    [Header("Attack Locations")]
+    public Transform NorthPos;
+    public Transform EastPos;
+    public Transform SouthPos;
+    public Transform WestPos;
+
     [Header("Floats")]
     public float AttackRange;
     public float TimeBtwAttack;
@@ -29,6 +35,15 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.W))
+            AttackPos = NorthPos;
+        if(Input.GetKeyDown(KeyCode.S))
+            AttackPos = SouthPos;
+        if (Input.GetKeyDown(KeyCode.A))
+            AttackPos = WestPos;
+        if (Input.GetKeyDown(KeyCode.D))
+            AttackPos = EastPos;
+
         if (Input.GetMouseButtonUp(0) && CanMeleeAttackAgain)
         {
             Debug.Log("hi");
