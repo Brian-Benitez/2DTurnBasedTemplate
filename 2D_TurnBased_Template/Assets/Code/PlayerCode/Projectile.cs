@@ -48,7 +48,7 @@ public class Projectile : MonoBehaviour
         else
         {
             Debug.Log("U hit nothinmg");
-            DestroyProjectile();
+            //DestroyProjectile();
         }
 
             transform.Translate(Vector2.up * SpeedOfProjectile * Time.deltaTime);

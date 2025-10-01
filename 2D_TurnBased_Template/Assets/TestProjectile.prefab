@@ -100,9 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc08db27b1029b94c8c85dd1d39677aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeedOfProjectile: 5
-  LifeTimeOfProjectile: 8
-  DistanceOfProjectile: 8
+  SpeedOfProjectile: 15
+  LifeTimeOfProjectile: 15
+  DistanceOfProjectile: 15
   RangeDamage: 1
   Enemy:
     serializedVersion: 2

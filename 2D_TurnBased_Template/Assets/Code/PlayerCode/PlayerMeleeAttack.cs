@@ -4,6 +4,7 @@ public class PlayerMeleeAttack : MonoBehaviour
 {
     [Header("Transforms")]
     public Transform AttackPos;
+    public Transform HerosSword;
 
     [Header("Attack Locations")]
     public Transform NorthPos;
@@ -43,6 +44,8 @@ public class PlayerMeleeAttack : MonoBehaviour
             AttackPos = WestPos;
         if (Input.GetKeyDown(KeyCode.D))
             AttackPos = EastPos;
+
+        HerosSword = AttackPos;//take this out when making art for sword swing
 
         if (Input.GetMouseButtonUp(0) && CanMeleeAttackAgain)
         {
