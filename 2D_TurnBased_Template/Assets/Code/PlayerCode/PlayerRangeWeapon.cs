@@ -3,8 +3,6 @@ using UnityEngine.Rendering;
 
 public class PlayerRangeWeapon : MonoBehaviour
 {
-    public float Offset;
-    public Quaternion Offsets;
     public float TimeBtwAttack;
 
     public GameObject Projectile;
@@ -22,7 +20,7 @@ public class PlayerRangeWeapon : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0) && CanRangeAttackAgain)
         {
-            Instantiate(Projectile, ShotPoint.position, Offsets);
+            Instantiate(Projectile, ShotPoint.position, transform.rotation);
             RestartTimerForRangeAttacks();
         }
 
