@@ -10,10 +10,12 @@ public class WeaponsController : MonoBehaviour
     public bool HasWeaponActive = false;
 
     ShieldController _shieldController;
+    PlayerMovement _playerMovement;
 
     private void Start()
     {
-        _shieldController = GetComponent<ShieldController>();   
+        _shieldController = GetComponent<ShieldController>();
+        _playerMovement = GetComponent<PlayerMovement>();   
         SwitchToMelee();
     }
 
@@ -26,9 +28,15 @@ public class WeaponsController : MonoBehaviour
         else
         {
             if (Input.GetKeyUp(KeyCode.Mouse1))
+            {
                 SwitchToMelee();
+                _playerMovement.TurnOffStopPlayerMovement();    
+            }
             else if (Input.GetKey(KeyCode.Mouse1))
+            {
+                _playerMovement.TurnOnStopPlayerMovement(); 
                 SwitchToRange();
+            }
         }
     }
 
