@@ -25,9 +25,9 @@ public class WeaponsController : MonoBehaviour
             DisableAllWeapons();
         else
         {
-            if (Input.GetKeyUp(KeyCode.Alpha1))
+            if (Input.GetKeyUp(KeyCode.Mouse1))
                 SwitchToMelee();
-            else if (Input.GetKeyUp(KeyCode.Alpha2))
+            else if (Input.GetKey(KeyCode.Mouse1))
                 SwitchToRange();
         }
     }
