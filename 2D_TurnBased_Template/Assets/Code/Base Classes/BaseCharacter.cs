@@ -1,4 +1,5 @@
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class BaseCharacter : MonoBehaviour
@@ -16,6 +17,9 @@ public class BaseCharacter : MonoBehaviour
     [Header("Booleans")]
     public bool IsCharacterDead = false;
 
+    public TextMeshProUGUI PlayersHealth;
+    public TextMeshProUGUI PlayersMaxHealth;    
+
     public void PrintInfo()
     {
         Debug.Log("Name: " + NameOfCharacter + " Max health:" + CharacterMaxHealthLevel + " Max Sainty: " + CharacterMaxSanityLevel);
@@ -25,6 +29,7 @@ public class BaseCharacter : MonoBehaviour
     {
         CharacterHealthAmount -= damage;
         Debug.Log(NameOfCharacter + " took: " + damage);
+        PlayersHealth.text = " " + CharacterHealthAmount;
         DoesCharacterDie();
     }
 
