@@ -11,6 +11,7 @@ public class WeaponsController : MonoBehaviour
 
     ShieldController _shieldController;
     PlayerMovement _playerMovement;
+    public PlayerMeleeAttack PlayerMeleeAttackRef;
 
     private void Start()
     {
@@ -27,14 +28,18 @@ public class WeaponsController : MonoBehaviour
             DisableAllWeapons();
         else
         {
+            if (PlayerMeleeAttackRef.IsAttacking)
+                _playerMovement.TurnOnStopPlayerMovement();
+            else
+                _playerMovement.TurnOffStopPlayerMovement();
+
             if (Input.GetKeyUp(KeyCode.Mouse1))
             {
                 SwitchToMelee();
-                _playerMovement.TurnOffStopPlayerMovement();    
             }
             else if (Input.GetKey(KeyCode.Mouse1))
             {
-                _playerMovement.TurnOnStopPlayerMovement(); 
+                _playerMovement.TurnOnStopPlayerMovement();
                 SwitchToRange();
             }
         }
