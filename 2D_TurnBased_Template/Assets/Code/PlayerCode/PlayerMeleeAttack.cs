@@ -7,12 +7,6 @@ public class PlayerMeleeAttack : MonoBehaviour
     public Transform HerosSword;
     public Transform DirectionalLooks;
 
-    [Header("Attack Locations")]
-    public Transform NorthPos;
-    public Transform EastPos;
-    public Transform SouthPos;
-    public Transform WestPos;
-
     [Header("Floats")]
     public float AttackRange;
     public float TimeBtwAttack;
@@ -41,17 +35,7 @@ public class PlayerMeleeAttack : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.W))
-            AttackPos = NorthPos;
-        if(Input.GetKeyDown(KeyCode.S))
-            AttackPos = SouthPos;
-        if (Input.GetKeyDown(KeyCode.A))
-            AttackPos = WestPos;
-        if (Input.GetKeyDown(KeyCode.D))
-            AttackPos = EastPos;
-
         DirectionalLooks.transform.position = AttackPos.position;//take this out when making art for sword swing
-        HerosSword.transform.position = AttackPos.position;
 
         if (Input.GetMouseButtonUp(0) && CanMeleeAttackAgain)
         {
