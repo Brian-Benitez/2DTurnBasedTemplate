@@ -468,7 +468,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerSpeed: 5
   PlayerObject: {fileID: 386186100}
+  Rb: {fileID: 386186107}
   StopPlayerMovement: 0
+  DashSpeed: 20
+  DashDuration: 1
+  DashCoolDown: 1
+  IsDashing: 0
+  CanDash: 1
 --- !u!212 &386186102
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -547,7 +553,6 @@ Transform:
   - {fileID: 34627878}
   - {fileID: 537470301}
   - {fileID: 524028573}
-  - {fileID: 519420032}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &386186104
@@ -1012,11 +1017,11 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03, y: 0.15, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 386186103}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &524028572
 GameObject:
@@ -2095,7 +2100,7 @@ MonoBehaviour:
   HerosSword: {fileID: 0}
   DirectionalLooks: {fileID: 524028573}
   AttackRange: 1
-  TimeBtwAttack: 1
+  TimeBtwAttack: 0.5
   PlayerDamage: 1
   WhatIsEnemies:
     serializedVersion: 2
@@ -2113,6 +2118,10 @@ PrefabInstance:
     - target: {fileID: 2706249500457282980, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
       propertyPath: m_Name
       value: EmenySwordsman (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2706249500457282980, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3401,7 +3410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2706249500457282980, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3523,3 +3532,4 @@ SceneRoots:
   - {fileID: 1635188581}
   - {fileID: 763277646}
   - {fileID: 1199341079}
+  - {fileID: 519420032}
