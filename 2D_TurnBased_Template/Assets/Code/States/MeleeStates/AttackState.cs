@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class AttackState : State//rename this to EnemyAttackState
@@ -8,6 +9,7 @@ public class AttackState : State//rename this to EnemyAttackState
     [Header("Enemys attack range and T.T.A")]
     public float AttackRange;
     public float TimeBtwAttack;
+    public float WindUpTimeForMelee;
 
     [Header("Bools Conditions to attack")]
     public bool CanHitAgain = true;
@@ -20,6 +22,7 @@ public class AttackState : State//rename this to EnemyAttackState
     private EnemySwordsman EnemySwordsmanRef;
     //States ref here
     ChaseState ChaseState;
+    EnemyWeaponRotation _enemyWeaponRotationRef;
 
 
     private float _maxTimeBtwAttacks;
@@ -27,14 +30,16 @@ public class AttackState : State//rename this to EnemyAttackState
     private void Start()
     {
         _maxTimeBtwAttacks = TimeBtwAttack;
-        EnemySwordsmanRef = gameObject.GetComponentInParent<EnemySwordsman>();
+        EnemySwordsmanRef = gameObject.GetComponentInParent<EnemySwordsman>();//whyd i do this?
         ChaseState = GetComponentInParent<ChaseState>();
+        _enemyWeaponRotationRef = GetComponentInParent<EnemyWeaponRotation>();
     }
 
     void Update()
     {
         if (CanHitAgain && WithinRange)
         {
+           _enemyWeaponRotationRef.IsAttacking = true;
             Collider2D[] enemiesToDamges = Physics2D.OverlapCircleAll(MeleePos.position, AttackRange, WhatisHittable);
 
             if (enemiesToDamges.Length == 0)
@@ -52,6 +57,7 @@ public class AttackState : State//rename this to EnemyAttackState
             }
 
             RestartTimerForAttacks();
+            
         }
 
         if (TimeBtwAttack <= 0f)
@@ -72,21 +78,11 @@ public class AttackState : State//rename this to EnemyAttackState
         if(AttackMissedPlayer == true)
         {
             //ChaseState.RestartDistance();
+            _enemyWeaponRotationRef.IsAttacking = false;
             AttackMissedPlayer = false;
             return ChaseState;
         }
-        /*
-        if(TargetAEnemyState.HaveATarget == false)
-        {
-            return TargetAEnemyState;
-        }
-
-        if(TargetAEnemyState.CurrentTargetPos.name == "Player")
-        {
-            if(TargetAEnemyState.CurrentTargetPos.GetComponent<BaseCharacter>().IsCharacterDead == true)
-                TargetAEnemyState.TurnOffBoolHaveATarget();
-        }
-        */
+       
         return this;
     }
 
@@ -100,5 +96,12 @@ public class AttackState : State//rename this to EnemyAttackState
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(MeleePos.position, AttackRange);
+    }
+
+    private static void Delay(float time, System.Action _callBack)
+    {
+        Sequence seq = DOTween.Sequence();
+
+        seq.AppendInterval(time).AppendCallback(() => _callBack());
     }
 }

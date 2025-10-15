@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 2
-  MinimumDistance: 6
+  MinimumDistance: 4
   DistanceFromPlayer: 0
 --- !u!61 &25861661
 BoxCollider2D:
@@ -2100,8 +2100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MeleePos: {fileID: 1254584502}
-  AttackRange: 2.2
+  AttackRange: 1.6
   TimeBtwAttack: 3
+  WindUpTimeForMelee: 1
   CanHitAgain: 1
   WithinRange: 0
   WhatisHittable:
@@ -3204,8 +3205,8 @@ Transform:
   m_GameObject: {fileID: 1524200120}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.83, y: 0.050000187, z: 0}
-  m_LocalScale: {x: 3.948533, y: 3.9483979, z: 1}
+  m_LocalPosition: {x: 4.88, y: -0.07, z: 0}
+  m_LocalScale: {x: 2.8599226, y: 3.0082843, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1791160939}
@@ -3540,6 +3541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7402547ac64943c4c9d9b3c43b44bce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsAttacking: 0
 --- !u!1 &1936295835
 GameObject:
   m_ObjectHideFlags: 0
