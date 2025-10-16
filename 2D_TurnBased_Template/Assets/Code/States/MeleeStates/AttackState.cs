@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 public class AttackState : State//rename this to EnemyAttackState
@@ -39,25 +40,8 @@ public class AttackState : State//rename this to EnemyAttackState
     {
         if (CanHitAgain && WithinRange)
         {
-           _enemyWeaponRotationRef.IsAttacking = true;
-            Collider2D[] enemiesToDamges = Physics2D.OverlapCircleAll(MeleePos.position, AttackRange, WhatisHittable);
-
-            if (enemiesToDamges.Length == 0)
-            {
-                Debug.Log("i hit no one:(");
-                AttackMissedPlayer = true;
-            }
-            else
-                AttackMissedPlayer = false;
-
-            for (int i = 0; i < enemiesToDamges.Length; i++)
-            {
-                enemiesToDamges[i].GetComponent<BaseCharacter>().TakeDamage(EnemySwordsmanRef.EnemyDamage);
-                Debug.Log("Enemy hit " + enemiesToDamges[i].gameObject.name + "for " + EnemySwordsmanRef.EnemyDamage);
-            }
-
+            StartCoroutine(WindUpAttack());
             RestartTimerForAttacks();
-            
         }
 
         if (TimeBtwAttack <= 0f)
@@ -72,13 +56,39 @@ public class AttackState : State//rename this to EnemyAttackState
         }
     }
 
+    void MeleeAttack()
+    {
+        Collider2D[] enemiesToDamges = Physics2D.OverlapCircleAll(MeleePos.position, AttackRange, WhatisHittable);
+
+        if (enemiesToDamges.Length == 0)
+        {
+            Debug.Log("i hit no one:(");
+            AttackMissedPlayer = true;
+        }
+        else
+            AttackMissedPlayer = false;
+
+        for (int i = 0; i < enemiesToDamges.Length; i++)
+        {
+            enemiesToDamges[i].GetComponent<BaseCharacter>().TakeDamage(EnemySwordsmanRef.EnemyDamage);
+            Debug.Log("Enemy hit " + enemiesToDamges[i].gameObject.name + "for " + EnemySwordsmanRef.EnemyDamage);
+        }
+    }
+    public IEnumerator WindUpAttack()
+    {
+        _enemyWeaponRotationRef.IsAttacking = true;
+        Debug.Log("Winding up attack " + WindUpTimeForMelee + " Seconds");
+        yield return new WaitForSeconds(WindUpTimeForMelee);
+        MeleeAttack();
+        _enemyWeaponRotationRef.IsAttacking = false;
+    }
+
     public override State RunCurrentState()//this is ther issue, this should not carry on while players are still alive
     {
 
         if(AttackMissedPlayer == true)
         {
             //ChaseState.RestartDistance();
-            _enemyWeaponRotationRef.IsAttacking = false;
             AttackMissedPlayer = false;
             return ChaseState;
         }
@@ -91,17 +101,10 @@ public class AttackState : State//rename this to EnemyAttackState
     public void NotWithinAttackingRange() => WithinRange = false;
 
 
-    //--------------------------------------------------------------------------------------------------------------------------->
+    //----------------------------------------------------Debug--stuff--------------------------------------------------------------------->
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(MeleePos.position, AttackRange);
-    }
-
-    private static void Delay(float time, System.Action _callBack)
-    {
-        Sequence seq = DOTween.Sequence();
-
-        seq.AppendInterval(time).AppendCallback(() => _callBack());
     }
 }

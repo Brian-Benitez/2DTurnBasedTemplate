@@ -3190,7 +3190,7 @@ GameObject:
   - component: {fileID: 1524200121}
   - component: {fileID: 1524200122}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: VisualMeleeRaduis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
