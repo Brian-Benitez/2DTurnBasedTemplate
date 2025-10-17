@@ -57,7 +57,7 @@ public class PlayerMeleeAttack : MonoBehaviour
         }
         else
         {
-            Debug.Log("hhh" + IsAttacking);
+            //Debug.Log("hhh" + IsAttacking);
             TimeBtwAttack -= Time.deltaTime;
             CanMeleeAttackAgain = false;
 
