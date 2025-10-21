@@ -204,7 +204,7 @@ Transform:
   m_GameObject: {fileID: 25861656}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.72, y: 3.16, z: 0}
+  m_LocalPosition: {x: 22.67, y: 3.16, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -316,10 +316,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeAttack: {fileID: 2116584260}
+  AttackState: {fileID: 798752167}
   MovementSpeed: 1
-  MinimumDistance: 2.6
+  MinimumDistanceFromPlayer: 5
   DistanceFromPlayer: 0
-  IsTooFarAway: 0
+  PreferedRangeAttkDistance: 7
+  CanStartRangeAttack: 0
 --- !u!1 &34627877
 GameObject:
   m_ObjectHideFlags: 0
@@ -2074,7 +2076,7 @@ Transform:
   m_GameObject: {fileID: 748019925}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.6800022, y: -1.5899999, z: 0}
+  m_LocalPosition: {x: 5.36, y: -3.06, z: 0}
   m_LocalScale: {x: 2.8599226, y: 3.0082848, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2156,7 +2158,7 @@ GameObject:
   - component: {fileID: 798752166}
   - component: {fileID: 798752167}
   m_Layer: 0
-  m_Name: MeleeState
+  m_Name: DKMeleeState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4044,7 +4046,7 @@ GameObject:
   - component: {fileID: 2116584259}
   - component: {fileID: 2116584260}
   m_Layer: 0
-  m_Name: RangeAttack
+  m_Name: DKRangeAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4077,12 +4079,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90acf2415dc710c42a55885a06a00528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RangeAttackPos: {fileID: 748019927}
+  RangeAttackPos: {fileID: 748019925}
+  Player: {fileID: 386186100}
   DKRangeDamage: 1
   RangeAttackRange: 1.41
-  TimeBtwAttack: 3
+  TimeBtwAttack: 10
   WindUpTimeForRange: 2
-  CanHitAgain: 1
+  CanRangeAttack: 0
+  IsAttackingNow: 0
   WhatisHittable:
     serializedVersion: 2
     m_Bits: 64
