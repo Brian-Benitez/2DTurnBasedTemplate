@@ -2621,67 +2621,6 @@ MonoBehaviour:
     m_Bits: 8
   CanMeleeAttackAgain: 0
   IsAttacking: 0
---- !u!1001 &1199341079
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2706249500457282980, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
-      propertyPath: m_Name
-      value: EmenySwordsman (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2706249500457282980, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 6.525256
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.7271583
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
 --- !u!1 &1211633314
 GameObject:
   m_ObjectHideFlags: 0
@@ -4151,7 +4090,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1c822726393b6e4fbd71802891f4d31, type: 3}
---- !u!1001 &6746422643844172101
+--- !u!1001 &3456999347317222056
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -4159,65 +4098,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2509464792397327270, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
-      propertyPath: MovementSpeed
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2706249500457282980, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
-      propertyPath: m_Name
-      value: EmenySwordsman
-      objectReference: {fileID: 0}
-    - target: {fileID: 2706249500457282980, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
+    - target: {fileID: 195745758380772270, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.59
       objectReference: {fileID: 0}
-    - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
+    - target: {fileID: 195745758380772270, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
       propertyPath: m_LocalPosition.y
       value: -3.11
       objectReference: {fileID: 0}
-    - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
+    - target: {fileID: 195745758380772270, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
+    - target: {fileID: 195745758380772270, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
+    - target: {fileID: 195745758380772270, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
+    - target: {fileID: 195745758380772270, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
+    - target: {fileID: 195745758380772270, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
+    - target: {fileID: 195745758380772270, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
+    - target: {fileID: 195745758380772270, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
+    - target: {fileID: 195745758380772270, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5976859620077289538, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
-      propertyPath: m_BodyType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7512143218296952787, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
-      propertyPath: WindUpTimeForMelee
-      value: 2.5
+    - target: {fileID: 8793644664842898992, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
+      propertyPath: m_Name
+      value: EmenySwordsman
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4295,14 +4218,13 @@ SceneRoots:
   - {fileID: 996498980}
   - {fileID: 1744839026}
   - {fileID: 110136108}
-  - {fileID: 6746422643844172101}
+  - {fileID: 3456999347317222056}
   - {fileID: 1407089246}
   - {fileID: 929606945928376602}
   - {fileID: 6809360696067963515}
   - {fileID: 1661266281}
   - {fileID: 1635188581}
   - {fileID: 763277646}
-  - {fileID: 1199341079}
   - {fileID: 519420032}
   - {fileID: 25861659}
   - {fileID: 748019927}
