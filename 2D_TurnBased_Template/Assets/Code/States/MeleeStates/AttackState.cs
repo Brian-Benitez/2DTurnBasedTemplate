@@ -40,6 +40,7 @@ public class AttackState : State//rename this to EnemyAttackState
     {
         if (CanHitAgain && WithinRange)
         {
+            _enemyWeaponRotationRef.IsAttacking = true;
             StartCoroutine(WindUpAttack());
             RestartTimerForAttacks();
         }
@@ -76,7 +77,7 @@ public class AttackState : State//rename this to EnemyAttackState
     }
     public IEnumerator WindUpAttack()
     {
-        _enemyWeaponRotationRef.IsAttacking = true;
+        
         Debug.Log("Winding up attack " + WindUpTimeForMelee + " Seconds");
         yield return new WaitForSeconds(WindUpTimeForMelee);
         MeleeAttack();

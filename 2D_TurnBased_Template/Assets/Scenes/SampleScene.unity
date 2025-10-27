@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &25861658
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a93dd8c5db448444806c88c17677e66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyHealth: 100
+  EnemyHealth: 20
   EnemySpeed: 2
   EnemyDamage: 4
   EnemyDamageRate: 1
@@ -2795,7 +2795,7 @@ Transform:
   m_GameObject: {fileID: 1254584501}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.87, y: -0.03999996, z: 0}
+  m_LocalPosition: {x: 3.38, y: -0.03999996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3297,7 +3297,7 @@ Transform:
   m_GameObject: {fileID: 1524200120}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.88, y: -0.07, z: 0}
+  m_LocalPosition: {x: 3.3900003, y: -0.07, z: 0}
   m_LocalScale: {x: 2.8599226, y: 3.0082843, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4159,13 +4159,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2509464792397327270, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
+      propertyPath: MovementSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2706249500457282980, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
       propertyPath: m_Name
       value: EmenySwordsman
       objectReference: {fileID: 0}
     - target: {fileID: 2706249500457282980, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4206,6 +4210,14 @@ PrefabInstance:
     - target: {fileID: 5293411415814348841, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5976859620077289538, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7512143218296952787, guid: 5d34aee7f3156b6478f491423f788178, type: 3}
+      propertyPath: WindUpTimeForMelee
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
