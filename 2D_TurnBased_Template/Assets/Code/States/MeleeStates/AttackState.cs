@@ -84,10 +84,10 @@ public class AttackState : State//rename this to EnemyAttackState
         _enemyWeaponRotationRef.IsAttacking = false;
     }
 
-    public override State RunCurrentState()//this is ther issue, this should not carry on while players are still alive
+    public override State RunCurrentState()
     {
 
-        if(AttackMissedPlayer == true)
+        if(AttackMissedPlayer == true && _enemyWeaponRotationRef.IsAttacking == false)
         {
             //ChaseState.RestartDistance();
             AttackMissedPlayer = false;
