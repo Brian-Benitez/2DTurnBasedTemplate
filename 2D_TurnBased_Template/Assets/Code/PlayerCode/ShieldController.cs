@@ -6,13 +6,15 @@ public class ShieldController : MonoBehaviour
     [Header("Shield Object")]
     public GameObject ShieldObject;
 
+    public KeyCode ShieldKey;
+
     [Header("Booleans")]
     public bool IsShieldActive = false;
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.E))
+        if(Input.GetKey(ShieldKey))
         {
             ShieldObject.SetActive(true);
             TurnOnShieldObject();

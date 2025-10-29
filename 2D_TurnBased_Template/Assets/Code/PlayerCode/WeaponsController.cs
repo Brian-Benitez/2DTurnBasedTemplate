@@ -22,6 +22,9 @@ public class WeaponsController : MonoBehaviour
 
     private void Update()
     {
+        if (_playerMovement.IsDashing)
+            return;
+
         if (HasWeaponActive == false)
             SwitchToMelee();
         if (_shieldController.IsShieldActive)

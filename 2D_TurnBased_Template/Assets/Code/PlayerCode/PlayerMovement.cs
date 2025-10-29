@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public bool StopPlayerMovement = false;
 
     [Header("Dash Settings")]
+    public KeyCode DashInputKey;
     public float DashSpeed = 10f;
     public float DashDuration = 1f;
     public float DashCoolDown = 1f;
@@ -22,10 +24,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (IsDashing)
-            return;
 
-        if(StopPlayerMovement)
+        if(Input.GetKey(KeyCode.Mouse1))
+        {
+            Debug.Log("stop moving");
+            moveDirection = Vector2.zero;
+        }
+            
+
+        if (IsDashing || StopPlayerMovement)
             return;
 
         float moveX = Input.GetAxisRaw("Horizontal");
@@ -34,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = new Vector2(moveX, moveY).normalized;
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && CanDash)
+        if (Input.GetKeyDown(DashInputKey) && CanDash)
         {
             Debug.Log("dash");
             StartCoroutine(Dash());
@@ -47,9 +54,6 @@ public class PlayerMovement : MonoBehaviour
             return;
 
         Rb.linearVelocity  = new Vector2(moveDirection.x * PlayerSpeed, moveDirection.y * PlayerSpeed);
-        //Vector2 aimdirection = mousePosition - Rb.position;
-        //float aimAngle = Mathf.Atan2(aimdirection.y, aimdirection.x) * Mathf.Rad2Deg - 90f;
-        //Rb.rotation = aimAngle;
     }
 
     public IEnumerator Dash()
