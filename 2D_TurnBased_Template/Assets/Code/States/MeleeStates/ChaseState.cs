@@ -6,18 +6,24 @@ public class ChaseState : State
     [Header("States")]
     AttackState AttackState;
 
+
     [Header("Floats")]
     public float MovementSpeed;
     public float MinimumDistance;
     public float DistanceFromPlayer;
 
+    EnemyWeaponRotation _enemyWeaponRotationRef;
     private void Start()
     {
-        AttackState = GetComponentInChildren<AttackState>();  
+        AttackState = GetComponentInChildren<AttackState>();
+        _enemyWeaponRotationRef = GetComponentInChildren<EnemyWeaponRotation>();
     }
 
     private void Update()
     {
+        if (_enemyWeaponRotationRef.IsAttacking)
+            return;
+
         if (Vector2.Distance(transform.position, NPCController.Instance.Player.position) > MinimumDistance)
         {
             AttackState.WithinRange = false;// not yet in range
