@@ -17,8 +17,20 @@ public class Projectile : MonoBehaviour
         Invoke("DestroyProjectile", LifeTimeOfProjectile);
     }
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player"))
+        {
+            Debug.Log("hit player");
+            NPCController.Instance.Player.GetComponent<BaseCharacter>().TakeDamage(RangeDamage);
+            DestroyProjectile();
+        }
+   
+    }
     private void Update()
     {
+        /*
         RaycastHit2D hitinfo = Physics2D.Raycast(transform.position, transform.up, DistanceOfProjectile, Enemy);
         if(hitinfo.collider != null)
         {
@@ -43,14 +55,14 @@ public class Projectile : MonoBehaviour
                     Debug.Log("hit sheild!");
                 }
             }
-            DestroyProjectile();
+
         }
         else
         {
             Debug.Log("U hit nothinmg");
             //DestroyProjectile();
         }
-
+        */
             transform.Translate(Vector2.up * SpeedOfProjectile * Time.deltaTime);
     }
 
