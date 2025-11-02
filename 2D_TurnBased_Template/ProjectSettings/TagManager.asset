@@ -7,6 +7,7 @@ TagManager:
   - Barricade
   - NPC
   - Shield
+  - Enemy
   layers:
   - Default
   - TransparentFX

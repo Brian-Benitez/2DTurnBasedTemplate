@@ -26,6 +26,12 @@ public class Projectile : MonoBehaviour
             NPCController.Instance.Player.GetComponent<BaseCharacter>().TakeDamage(RangeDamage);
             DestroyProjectile();
         }
+        else if(collision.CompareTag("Enemy"))
+        {
+            Debug.Log("hit enemy");
+            collision.gameObject.GetComponent<BaseEnemy>().TakeDamage(RangeDamage);
+            DestroyProjectile();
+        }
    
     }
     private void Update()
